@@ -14,7 +14,7 @@ Pour que l'interface soit la plus simple possible, nous l'avons imaginé sur une
 
 4. **En bas à droite** : les post-it unique et répétitifs, pour ceux-ci 3 sont affichés directement, les suivants sont disponnible en appuyant sur le dossier.
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/1.Home.png)
+![](Mockups/1.Home.png)
 
 Les post-it important apparaissent avant les autres post-it.
 
