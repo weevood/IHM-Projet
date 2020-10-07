@@ -1,2 +1,2 @@
-# IHM-labo1
-IHM - Labo1
+# IHM-Projet
+IHM - Projet
