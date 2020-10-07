@@ -27,7 +27,7 @@ Par soucis de simplicitée il y a uniquement deux actions possibles sur cette in
 
 Lors d'un clic sur le bouton d'ajout de post-it, on peut choisir entre les 3 types de post-it disponnibles.
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/2.Add.png)
+![](Mockups/2.Add.png)
 
 Un nouveau post-it vierge est alors créé, l'interface de celui-ci est identique à celle du point suivant.
 
@@ -39,11 +39,11 @@ Les types de post-it proposés sont les suivants :
 
 - Simple texte avec Emoji
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/3.View-once.png)
+![](Mockups/3.View-once.png)
 
 - Liste de tâches partielles
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/3.View-repeat.png)
+![](Mockups/3.View-repeat.png)
 
 Dans cette vue il est possible de cliquer sur la roue de réglage. A ce moment la le post-it tourne et les réglages de celui-ci s'affichent.
 
@@ -56,7 +56,7 @@ Les configurations possibles possible d’un post-it sont :
 
 Nous avons décidé de fixer les couleurs pour éviter des confusions et d’avoir un arc-en-ciel au niveau de l’interface.
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/4.Settings.png)
+![](Mockups/4.Settings.png)
 
 C'est également dans cette vue que l'on peut supprimer un post-it.
 
