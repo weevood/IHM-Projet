@@ -12,7 +12,7 @@ Pour que l'interface soit la plus simple possible, nous l'avons imaginé sur une
 
 3. **En bas à gauche** : les post-it toujours affichés, il peut y'en avoir jusqu'a 4
 
-4. **En bas à droite** : les post-it unique et répétitifs, pour ceux-ci 3 sont affichés directement, les suivants sont disponnible en appuyant sur le dossier. 
+4. **En bas à droite** : les post-it unique et répétitifs, pour ceux-ci 3 sont affichés directement, les suivants sont disponnible en appuyant sur le dossier.
 
 ![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/1.Home.png)
 
@@ -67,5 +67,3 @@ C'est également dans cette vue que l'on peut supprimer un post-it.
 - [ ] Choisir une techno (je propose React.js avec bootstrap)
 
 - [ ] Trouvé une fonctionnailité suplémentaire
-
-
