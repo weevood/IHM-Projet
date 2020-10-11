@@ -62,8 +62,13 @@ C'est également dans cette vue que l'on peut supprimer un post-it.
 
 ## Technologie
 
-!!! TODO
+Nous avons choisi d'utiliser une interface web avec React.js et bootstrap.
+La persistance des données sera fait dans une base de données type MySQL ou SQLLite.
+Notre application sera accessible via un navigateur et mise à disposition sur un serveur web.
 
 - [ ] Choisir une techno (je propose React.js avec bootstrap)
 
-- [ ] Trouvé une fonctionnailité suplémentaire
+## Fonctionnalité suplémentaire
+
+Comme fonctionnalité supplémentaire par rapport aux spécifications de base, nous proposons d'avoir la possibilité de saisir une url sur un post-it.
+Un clic sur cette url ouvre directement un site web dans le navigateur web et affiche par exemple un journal ou une autre application web.
