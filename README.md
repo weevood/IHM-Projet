@@ -66,8 +66,6 @@ Nous avons choisi d'utiliser une interface web avec React.js et bootstrap.
 La persistance des données sera fait dans une base de données type MySQL ou SQLLite.
 Notre application sera accessible via un navigateur et mise à disposition sur un serveur web.
 
-- [ ] Choisir une techno (je propose React.js avec bootstrap)
-
 ## Fonctionnalité suplémentaire
 
 Comme fonctionnalité supplémentaire par rapport aux spécifications de base, nous proposons d'avoir la possibilité de saisir une url sur un post-it.
