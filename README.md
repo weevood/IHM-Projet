@@ -60,13 +60,14 @@ Nous avons décidé de fixer les couleurs pour éviter des confusions et d’avo
 
 C'est également dans cette vue que l'on peut supprimer un post-it.
 
+### Fonctionnalité suplémentaire
+
+Comme fonctionnalité supplémentaire par rapport aux spécifications de base, nous avons imaginé un type de post-it supplémentaire. Celui-ci propose d'ajouter une URL à la place de son texte. 
+
+Au clic sur ce post-it, l'url spécifiée est directement ouvert dans le navigateur web et affiche par exemple un journal ou une autre application web. Pour les personnes âgées, cela nous semble un moyen simple et efficace de leur créer des raccourcis vers leurs sites préférés.
+
 ## Technologie
 
-Nous avons choisi d'utiliser une interface web avec React.js et bootstrap.
-La persistance des données sera fait dans une base de données type MySQL ou SQLLite.
-Notre application sera accessible via un navigateur et mise à disposition sur un serveur web.
-
-## Fonctionnalité suplémentaire
-
-Comme fonctionnalité supplémentaire par rapport aux spécifications de base, nous proposons d'avoir la possibilité de saisir une url sur un post-it.
-Un clic sur cette url ouvre directement un site web dans le navigateur web et affiche par exemple un journal ou une autre application web.
+Nous avons choisi d'utiliser les frameworks [React.js](https://fr.reactjs.org/) et [Bootstrap](https://getbootstrap.com/) afin de réaliser cette interface web. Celle-ci sera alors disponible tant sur un ordinateur que sur une tablette.
+La persistance des données sera fait dans une base de données type [MySQL](https://www.mysql.com/fr/) ou [SQLLite](https://www.sqlite.org/index.html).
+Une fois terminée, notre application ser déployé sur un serveur web de type [Netlify](https://www.netlify.com/) puis sera accessible via tout navigateur moderne.
