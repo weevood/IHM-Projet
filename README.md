@@ -71,3 +71,10 @@ Au clic sur ce post-it, l'url spécifiée est directement ouvert dans le navigat
 Nous avons choisi d'utiliser les frameworks [React.js](https://fr.reactjs.org/) et [Bootstrap](https://getbootstrap.com/) afin de réaliser cette interface web. Celle-ci sera alors disponible tant sur un ordinateur que sur une tablette.
 La persistance des données sera fait dans une base de données type [MySQL](https://www.mysql.com/fr/) ou [SQLLite](https://www.sqlite.org/index.html).
 Une fois terminée, notre application ser déployé sur un serveur web de type [Netlify](https://www.netlify.com/) puis sera accessible via tout navigateur moderne.
+
+
+### Inspiration
+- https://github.com/ajainvivek/react-stickies
+- https://github.com/cosmicjs/sticky-notes
+- https://github.com/gemmi-arts/react-sticky-notes
+- https://github.com/jeffsdev/React-StickyNotes
