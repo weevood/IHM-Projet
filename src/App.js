@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import Stickies from 'react-stickies';
+// import Stickies from 'react-stickies';
+import Stickies from './components/Stickies';
 
-const today = require('./components/today');
-const remains = require('./components/remains');
-const repeat = require('./components/repeat');
-const once = require('./components/once');
+const today = require('./data/today');
+const remains = require('./data/remains');
+const repeat = require('./data/repeat');
+const once = require('./data/once');
 
 export default class extends Component
 {
@@ -49,7 +50,7 @@ export default class extends Component
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
-				<div className="col-md-2">
+				<div className="col-md-2 btn-add-container">
 					<button type="button" className="btn btn-success btn-add"><i className="fas fa-plus"></i></button>
 				</div>
 			</div>

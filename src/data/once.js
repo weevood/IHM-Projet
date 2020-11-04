@@ -13,12 +13,12 @@ const data = [
       "isDraggable": false,
       "isResizable": false
     },
-    "contentEditable": true,
+    "contentEditable": false,
     "timeStamp": "13 Feb 2017 2:53 PM"
   },
   {
     "id": "2020-11-02-032",
-    "text": "- Lait - Fromage - Beure - Soupe",
+    "text": "- Lait\n - Fromage\n - Beure\n - Soupe\n",
     "title": "Liste de course",
     "color": '#f1c40f',
     "grid": {
@@ -30,7 +30,7 @@ const data = [
       "isDraggable": false,
       "isResizable": false
     },
-    "contentEditable": true,
+    "contentEditable": false,
     "timeStamp": "13 Feb 2017 2:53 PM"
   }
 ]

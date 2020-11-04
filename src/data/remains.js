@@ -13,7 +13,7 @@ const data = [
       "isDraggable": false,
       "isResizable": false
     },
-    "contentEditable": true,
+    "contentEditable": false,
     "timeStamp": "13 Feb 2017 2:53 PM"
   },
   {
@@ -30,7 +30,7 @@ const data = [
       "isDraggable": false,
       "isResizable": false
     },
-    "contentEditable": true,
+    "contentEditable": false,
     "timeStamp": "13 Feb 2017 2:53 PM"
   },
   {
@@ -47,7 +47,7 @@ const data = [
       "isDraggable": false,
       "isResizable": false
     },
-    "contentEditable": true,
+    "contentEditable": false,
     "timeStamp": "13 Feb 2017 2:53 PM"
   }
 ]
