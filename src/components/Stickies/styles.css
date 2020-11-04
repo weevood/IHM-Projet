@@ -1,32 +1,43 @@
 /* Note styles */
 /** Grid Styles **/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+.curtain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .react-stickies-wrapper {
   height: 100%;
   width: 100%;
   position: relative;
-}
-.react-stickies-wrapper * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
 .react-stickies-wrapper::-moz-selection {
   text-shadow: none;
 }
 .react-stickies-wrapper::selection {
   text-shadow: none;
-}
-.react-stickies-wrapper .clearfix {
-  *zoom: 1;
-}
-.react-stickies-wrapper .clearfix:before {
-  content: " ";
-  display: table;
-}
-.react-stickies-wrapper .clearfix:after {
-  content: " ";
-  display: table;
-  clear: both;
 }
 .react-stickies-wrapper .note-wrap {
   width: 100%;
@@ -50,7 +61,7 @@
   position: absolute;
 }
 .react-stickies-wrapper .note-wrap .title {
-  color: #747474;
+  color: white;
   text-decoration: none;
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
@@ -85,6 +96,13 @@
 .react-stickies-wrapper .note.big .note-body {
   padding: 10px;
   font-size: 1em;
+}
+.react-stickies-wrapper .note.editable {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(2.5);
+  z-index: 1;
 }
 .react-stickies-wrapper .edit {
   float: right;

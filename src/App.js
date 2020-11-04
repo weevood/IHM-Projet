@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // import Stickies from 'react-stickies';
 import Stickies from './components/Stickies';
+import {TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "./utils/constants";
 
 const today = require('./data/today');
 const remains = require('./data/remains');
@@ -16,12 +17,19 @@ export default class extends Component
 	{
 		super(props);
 		this.state = {
+			addNote: false,
+			currentNote: null,
+			curtain: false,
 			today: today.default,
 			remains: remains.default,
 			repeat: repeat.default,
 			once: once.default,
 		};
 		this.onChange = this.onChange.bind(this);
+		this.toggleCurtain = this.toggleCurtain.bind(this);
+		this.addNote = this.addNote.bind(this);
+		this.showNote = this.showNote.bind(this);
+		this.createNote = this.createNote.bind(this);
 	}
 
 	onChange(notes)
@@ -31,10 +39,47 @@ export default class extends Component
 		});
 	}
 
+	toggleCurtain(e)
+	{
+		e.stopPropagation();
+		this.setState({
+			curtain: !this.state.curtain
+		});
+		// TODO check because set contentEditable before changes ?!
+		if(this.state.currentNote !== null){
+			this.state.currentNote.contentEditable = false;
+		}
+	}
+
+	showNote(e, currentNote)
+	{
+		currentNote.contentEditable = true;
+		this.setState({
+			currentNote: currentNote
+		});
+		this.toggleCurtain(e);
+	}
+
+	addNote(e)
+	{
+		e.stopPropagation();
+		this.setState({
+			addNote: true
+		});
+		this.toggleCurtain(e);
+	}
+
+	createNote(e, type)
+	{
+		e.stopPropagation();
+		console.log('createNote: ' + type);
+		// TODO
+	}
+
 	render()
 	{
 		let wrapperStyle = {
-			height: '50vh', width: '100%', overflow: 'auto'
+			height: '46vh', width: '100%', overflow: 'auto'
 		};
 		return (<div className="container-fluid">
 			<div className="row">
@@ -45,13 +90,17 @@ export default class extends Component
 						style={{float: 'left'}}
 						title={true}
 						footer={true}
-						tape={false}
 						onChange={this.onChange}
+						showNote={this.showNote}
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
 				<div className="col-md-2 btn-add-container">
-					<button type="button" className="btn btn-success btn-add"><i className="fas fa-plus"></i></button>
+					<button type="button"
+							className="btn btn-success btn-add"
+							onClick={(e) => this.addNote(e)}>
+						<i className="fas fa-plus"/>
+					</button>
 				</div>
 			</div>
 			<div className="row">
@@ -61,9 +110,9 @@ export default class extends Component
 						notes={this.state.remains}
 						style={{float: 'left'}}
 						title={true}
-						footer={true}
-						tape={false}
+						footer={false}
 						onChange={this.onChange}
+						showNote={this.showNote}
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
@@ -74,9 +123,9 @@ export default class extends Component
 						notes={this.state.repeat}
 						style={{float: 'left'}}
 						title={true}
-						footer={true}
-						tape={false}
+						footer={false}
 						onChange={this.onChange}
+						showNote={this.showNote}
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
@@ -87,13 +136,37 @@ export default class extends Component
 						notes={this.state.once}
 						style={{float: 'left'}}
 						title={true}
-						footer={true}
-						tape={false}
+						footer={false}
 						onChange={this.onChange}
+						showNote={this.showNote}
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
 			</div>
+			{this.state.curtain ? <div className="curtain" onClick={(e) => this.toggleCurtain(e)}>
+				{this.state.currentNote ? <Stickies
+					notes={[this.state.currentNote]}
+					style={{float: 'left'}}
+					title={true}
+					footer={true}
+					onChange={this.onChange}
+					wrapperStyle={{
+						height: '100vh', width: '100%', overflow: 'auto'
+					}}
+				/> : null}
+				{this.state.addNote ? <div>
+					<h2>New post-it</h2>
+					<button className="btn btn-primary btn-add-remains"
+							onClick={(e) => this.createNote(e, TYPE_REMAINS)}>Remains
+					</button>
+					<button className="btn btn-primary btn-add-repeat"
+							onClick={(e) => this.createNote(e, TYPE_REPEAT)}>Repeat
+					</button>
+					<button className="btn btn-primary btn-add-once"
+							onClick={(e) => this.createNote(e, TYPE_ONCE)}>Once
+					</button>
+				</div> : null}
+			</div> : null}
 		</div>);
 	}
 }

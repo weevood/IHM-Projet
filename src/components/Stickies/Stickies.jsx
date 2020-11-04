@@ -72,6 +72,8 @@ export default class extends Component
 		};
 		this.createBlankNote = this.createBlankNote.bind(this);
 		this.renderNote = this.renderNote.bind(this);
+		this.showNote = this.showNote.bind(this);
+		this.editNote = this.editNote.bind(this);
 		this.onLayoutChange = this.onLayoutChange.bind(this);
 		this.onBreakpointChange = this.onBreakpointChange.bind(this);
 	}
@@ -148,8 +150,18 @@ export default class extends Component
 		}
 	}
 
-	editNote(currentNote)
+	showNote(e, currentNote)
 	{
+		e.stopPropagation();
+		// Show curtain and note
+		if (!currentNote.contentEditable)
+			this.props.showNote(e, currentNote);
+	}
+
+	editNote(e, currentNote)
+	{
+		e.stopPropagation();
+		console.log('editNote');
 		// TODO
 	}
 
@@ -281,6 +293,7 @@ export default class extends Component
 			<aside
 				className={`note-wrap note ${note.type === TYPE_TODAY ? 'big' : ''}`}
 				style={noteStyle}
+				onClick={(e) => this.showNote(e, note)}
 			>
 				<div className="note-header" style={noteHeaderStyle}>
 					{/*<div
@@ -291,10 +304,9 @@ export default class extends Component
 					 {addIcon}
 					 </div>*/}
 					<div className="title" style={noteTitleStyle}>
-						<ContentEditable
-							html={note.title}
-							onChange={html => this.handleTitleChange(html, note)}
-						/>
+						{!note.contentEditable ? note.title : <ContentEditable
+						html={note.title}
+						onChange={html => this.handleTitleChange(html, note)}/>}
 					</div>
 					{/*<div
 					 className={`${closeIcon ? '' : 'close'}`}
@@ -318,7 +330,7 @@ export default class extends Component
 					<div
 						className={`${editIcon ? '' : 'edit'}`}
 						style={editStyle}
-						onClick={() => this.editNote(note)}
+						onClick={(e) => this.editNote(e, note)}
 					>
 						<FontAwesomeIcon icon={faCog}/>
 					</div>
