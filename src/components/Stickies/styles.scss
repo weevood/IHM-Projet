@@ -66,7 +66,7 @@
     }
 
     .title {
-      color: white;
+      color: white !important;
       text-decoration: none;
       -webkit-transition: all 0.4s ease;
       -moz-transition: all 0.4s ease;
@@ -121,6 +121,12 @@
       z-index: 1;
     }
 
+  }
+
+  .important {
+    float: left;
+    margin-left: 8px;
+    color: #e74c3c;
   }
 
   .edit {
@@ -304,4 +310,55 @@
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+
+.btn-repeat,
+.btn-once,
+.btn-remains {
+  color: white !important;
+  border: 0;
+  background-color: #c0392b;
+
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: darken(#c0392b, 10%);
+  }
+}
+
+.btn-repeat,
+.btn-once,
+.btn-remains {
+  color: white !important;
+  border: 0;
+}
+
+.btn-repeat {
+  background-color: #2980b9;
+
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: darken(#2980b9, 10%);
+  }
+}
+
+.btn-once {
+  background-color: #f1c40f;
+
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: darken(#f1c40f, 10%);
+  }
+}
+
+.btn-remains {
+  background-color: #c0392b;
+
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: darken(#c0392b, 10%);
+  }
 }

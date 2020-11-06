@@ -1,26 +1,25 @@
 const data = [
   {
     "id": "2020-11-02-021",
+    "type": 'repeat',
+    "important": 1,
     "text": "Prendre 1 Dolipran a 11h30",
     "title": "Medicaments",
-    "color": '#2980b9',
     "grid": {
       "i": "2020-11-02-021",
       "x": 0,
-      "y": null,
+      "y": 0,
       "w": 1,
       "h" : 1,
       "isDraggable": false,
       "isResizable": false
-    },
-    "contentEditable": false,
-    "timeStamp": "13 Feb 2017 2:53 PM"
+    }
   },
   {
     "id": "2020-11-02-022",
+    "type": 'repeat',
     "text": "Tous les mercredis a 14h15.",
     "title": "Visite medicale",
-    "color": '#2980b9',
     "grid": {
       "i": "2020-11-02-022",
       "x": 2,
@@ -29,26 +28,22 @@ const data = [
       "h" : 1,
       "isDraggable": false,
       "isResizable": false
-    },
-    "contentEditable": false,
-    "timeStamp": "13 Feb 2017 2:53 PM"
+    }
   },
   {
     "id": "2020-11-02-023",
+    "type": 'repeat',
     "text": "Prendre 2 Doliprans a 17h30",
     "title": "Medicaments",
-    "color": '#2980b9',
     "grid": {
       "i": "2020-11-02-023",
       "x": 0,
-      "y": null,
+      "y": 2,
       "w": 1,
       "h" : 1,
       "isDraggable": false,
       "isResizable": false
-    },
-    "contentEditable": false,
-    "timeStamp": "13 Feb 2017 2:53 PM"
+    }
   },
 ]
 

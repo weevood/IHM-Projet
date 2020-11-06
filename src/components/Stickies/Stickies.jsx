@@ -4,29 +4,13 @@ import moment from 'moment';
 import ContentEditable from './ContentEditable';
 import './styles.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCog} from '@fortawesome/free-solid-svg-icons'
-import {TYPE_TODAY} from "../../utils/constants";
+import {faCog, faExclamation} from '@fortawesome/free-solid-svg-icons'
+import {STATE_TODAY, TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "../../utils/constants";
 
 const WidthProvider = require('react-grid-layout').WidthProvider;
 let ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
 ResponsiveReactGridLayout = WidthProvider(ResponsiveReactGridLayout);
-
-/**
- * @method: guid
- * @desc: Generates unique guid
- **/
-function guid()
-{
-	function s4()
-	{
-		return Math.floor((1 + Math.random()) * 0x10000)
-			.toString(16)
-			.substring(1);
-	}
-
-	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
 
 /**
  * @method: tranformEditorState
@@ -67,23 +51,14 @@ export default class extends Component
 		this.state = {
 			newCounter: 0,
 			notes: props.notes ? tranformEditorState(props.notes) : [],
-			colors: props.colors || ['#FBE4BE', '#F7D1D1', '#E4FABC', '#CAE0FA'],
+			colors: props.colors || ['#c0392b', '#2980b9', '#f1c40f'],
 			dateFormat: props.dateFormat || 'lll'
 		};
-		this.createBlankNote = this.createBlankNote.bind(this);
 		this.renderNote = this.renderNote.bind(this);
 		this.showNote = this.showNote.bind(this);
 		this.editNote = this.editNote.bind(this);
 		this.onLayoutChange = this.onLayoutChange.bind(this);
 		this.onBreakpointChange = this.onBreakpointChange.bind(this);
-	}
-
-	componentDidMount()
-	{
-		if (this.props.notes && !this.props.notes.length)
-		{
-			this.createBlankNote();
-		}
 	}
 
 	componentWillReceiveProps(nextProps)
@@ -95,20 +70,8 @@ export default class extends Component
 			});
 		}
 		this.setState({
-			colors: nextProps.colors || ['#FBE4BE', '#F7D1D1', '#E4FABC', '#CAE0FA'],
-			dateFormat: nextProps.dateFormat || 'lll'
+			colors: nextProps.colors || ['#c0392b', '#2980b9', '#f1c40f'], dateFormat: nextProps.dateFormat || 'lll'
 		});
-	}
-
-	generateRandomColors()
-	{
-		const colors = this.state.colors;
-		return colors[Math.floor(Math.random() * (colors.length - 1))];
-	}
-
-	generateRandomDegree(max, min)
-	{
-		return `${Math.floor(Math.random() * (max - min + 1)) + min}deg`;
 	}
 
 	handleTitleChange(html, currentNote)
@@ -154,8 +117,7 @@ export default class extends Component
 	{
 		e.stopPropagation();
 		// Show curtain and note
-		if (!currentNote.contentEditable)
-			this.props.showNote(e, currentNote);
+		this.props.showNote(e, currentNote);
 	}
 
 	editNote(e, currentNote)
@@ -188,35 +150,6 @@ export default class extends Component
 				}
 			}
 		});
-	}
-
-	createBlankNote()
-	{
-		const dateFormat = this.state.dateFormat;
-		const grid = this.props.grid || {};
-		const uid = guid();
-		const note = {
-			grid: {
-				i: `${uid}`, x: this.state.notes.length * 2 % (this.state.cols || 12), y: Infinity, // puts it at the bottom
-				w: grid.w || 2, h: grid.h || 2
-			},
-			id: uid,
-			editorState: EditorState.createEmpty(),
-			title: 'Title',
-			color: this.generateRandomColors(),
-			degree: this.generateRandomDegree(-2, 2),
-			timeStamp: moment().format(dateFormat),
-			contentEditable: true
-		};
-		this.setState({
-			// Add a new item. It must have a unique key!
-			notes: this.state.notes.concat(note), // Increment the counter to ensure key is always unique.
-			newCounter: this.state.newCounter + 1
-		});
-		if (typeof this.props.onAdd === 'function')
-		{
-			this.props.onAdd(note);
-		}
 	}
 
 	onLayoutChange(layout)
@@ -268,6 +201,12 @@ export default class extends Component
 		const editIcon = this.props.editIcon || '';
 		const editStyle = this.props.addStyle || {};
 
+		note.contentEditable = false;
+
+		if (note.type === TYPE_REMAINS) note.color = '#c0392b';
+		if (note.type === TYPE_REPEAT) note.color = '#2980b9';
+		if (note.type === TYPE_ONCE) note.color = '#f1c40f';
+
 		const noteStyle = Object.assign({}, {
 			background: note.color, transform: note.degree
 		}, this.props.noteStyle || {});
@@ -291,7 +230,7 @@ export default class extends Component
 		grid.y = grid.y || Infinity;
 		return (<div key={i} data-grid={grid}>
 			<aside
-				className={`note-wrap note ${note.type === TYPE_TODAY ? 'big' : ''}`}
+				className={`note-wrap note ${note.state === STATE_TODAY ? 'big' : ''}`}
 				style={noteStyle}
 				onClick={(e) => this.showNote(e, note)}
 			>
@@ -303,10 +242,13 @@ export default class extends Component
 					 >
 					 {addIcon}
 					 </div>*/}
+					{note.important ? <span className="important">
+						<FontAwesomeIcon icon={faExclamation}/>
+					</span> : null}
 					<div className="title" style={noteTitleStyle}>
 						{!note.contentEditable ? note.title : <ContentEditable
-						html={note.title}
-						onChange={html => this.handleTitleChange(html, note)}/>}
+							html={note.title}
+							onChange={html => this.handleTitleChange(html, note)}/>}
 					</div>
 					{/*<div
 					 className={`${closeIcon ? '' : 'close'}`}

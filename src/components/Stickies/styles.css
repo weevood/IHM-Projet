@@ -61,7 +61,7 @@
   position: absolute;
 }
 .react-stickies-wrapper .note-wrap .title {
-  color: white;
+  color: white !important;
   text-decoration: none;
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
@@ -103,6 +103,11 @@
   left: 50%;
   transform: scale(2.5);
   z-index: 1;
+}
+.react-stickies-wrapper .important {
+  float: left;
+  margin-left: 8px;
+  color: #e74c3c;
 }
 .react-stickies-wrapper .edit {
   float: right;
@@ -264,6 +269,51 @@
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+
+.btn-repeat,
+.btn-once,
+.btn-remains {
+  color: white !important;
+  border: 0;
+  background-color: #c0392b;
+}
+.btn-repeat:active, .btn-repeat:hover, .btn-repeat:focus,
+.btn-once:active,
+.btn-once:hover,
+.btn-once:focus,
+.btn-remains:active,
+.btn-remains:hover,
+.btn-remains:focus {
+  background-color: #962d22;
+}
+
+.btn-repeat,
+.btn-once,
+.btn-remains {
+  color: white !important;
+  border: 0;
+}
+
+.btn-repeat {
+  background-color: #2980b9;
+}
+.btn-repeat:active, .btn-repeat:hover, .btn-repeat:focus {
+  background-color: #20638f;
+}
+
+.btn-once {
+  background-color: #f1c40f;
+}
+.btn-once:active, .btn-once:hover, .btn-once:focus {
+  background-color: #c29d0b;
+}
+
+.btn-remains {
+  background-color: #c0392b;
+}
+.btn-remains:active, .btn-remains:hover, .btn-remains:focus {
+  background-color: #962d22;
 }
 
 /*# sourceMappingURL=styles.css.map */

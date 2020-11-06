@@ -1,9 +1,9 @@
 const data = [
   {
     "id": "2020-11-02-031",
+    "type": 'once',
     "text": "Telephonner au docteur Michou au 076/345.54.56.",
     "title": "Medecin",
-    "color": '#f1c40f',
     "grid": {
       "i": "2020-11-02-031",
       "x": 0,
@@ -12,15 +12,13 @@ const data = [
       "h" : 1,
       "isDraggable": false,
       "isResizable": false
-    },
-    "contentEditable": false,
-    "timeStamp": "13 Feb 2017 2:53 PM"
+    }
   },
   {
     "id": "2020-11-02-032",
+    "type": 'once',
     "text": "- Lait\n - Fromage\n - Beure\n - Soupe\n",
     "title": "Liste de course",
-    "color": '#f1c40f',
     "grid": {
       "i": "2020-11-02-032",
       "x": 2,
@@ -29,9 +27,7 @@ const data = [
       "h" : 1,
       "isDraggable": false,
       "isResizable": false
-    },
-    "contentEditable": false,
-    "timeStamp": "13 Feb 2017 2:53 PM"
+    }
   }
 ]
 

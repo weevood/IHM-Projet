@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 // import Stickies from 'react-stickies';
 import Stickies from './components/Stickies';
 import {TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "./utils/constants";
+import {EditorState} from "draft-js";
+import moment from "moment";
 
 const today = require('./data/today');
 const remains = require('./data/remains');
@@ -43,37 +45,60 @@ export default class extends Component
 	{
 		e.stopPropagation();
 		this.setState({
-			curtain: !this.state.curtain
+			curtain: false
 		});
-		// TODO check because set contentEditable before changes ?!
-		if(this.state.currentNote !== null){
+		if (this.state.currentNote !== null)
+		{
 			this.state.currentNote.contentEditable = false;
 		}
 	}
 
 	showNote(e, currentNote)
 	{
-		currentNote.contentEditable = true;
-		this.setState({
-			currentNote: currentNote
-		});
-		this.toggleCurtain(e);
+		e.stopPropagation();
+		if (!currentNote.contentEditable)
+		{
+			currentNote.contentEditable = true;
+			this.setState({
+				currentNote: currentNote, curtain: true
+			});
+		}
 	}
 
 	addNote(e)
 	{
 		e.stopPropagation();
 		this.setState({
-			addNote: true
+			addNote: true, curtain: true
 		});
-		this.toggleCurtain(e);
 	}
 
 	createNote(e, type)
 	{
 		e.stopPropagation();
-		console.log('createNote: ' + type);
-		// TODO
+		const uid = guid();
+		const note = {
+			grid: {
+				i: `${uid}`, x: this.state.notes.length * 2 % (this.state.cols || 12), y: Infinity, // puts it at the bottom
+				w: 1, h: 1
+			}, id: uid, editorState: EditorState.createEmpty(), title: 'Title', type: type, contentEditable: false
+		};
+		if (type === TYPE_REMAINS)
+		{
+			this.setState({
+				remains: this.state.remains.concat(note),
+			});
+		} else if (type === TYPE_REPEAT)
+		{
+			this.setState({
+				repeat: this.state.repeat.concat(note),
+			});
+		} else if (type === TYPE_ONCE)
+		{
+			this.setState({
+				once: this.state.once.concat(note),
+			});
+		}
 	}
 
 	render()
@@ -150,23 +175,40 @@ export default class extends Component
 					title={true}
 					footer={true}
 					onChange={this.onChange}
+					showNote={this.showNote}
 					wrapperStyle={{
 						height: '100vh', width: '100%', overflow: 'auto'
 					}}
 				/> : null}
 				{this.state.addNote ? <div>
 					<h2>New post-it</h2>
-					<button className="btn btn-primary btn-add-remains"
+					<button className="btn btn-remains"
 							onClick={(e) => this.createNote(e, TYPE_REMAINS)}>Remains
 					</button>
-					<button className="btn btn-primary btn-add-repeat"
+					<button className="btn btn-repeat"
 							onClick={(e) => this.createNote(e, TYPE_REPEAT)}>Repeat
 					</button>
-					<button className="btn btn-primary btn-add-once"
+					<button className="btn btn-once"
 							onClick={(e) => this.createNote(e, TYPE_ONCE)}>Once
 					</button>
 				</div> : null}
 			</div> : null}
 		</div>);
 	}
+}
+
+/**
+ * @method: guid
+ * @desc: Generates unique guid
+ **/
+function guid()
+{
+	function s4()
+	{
+		return Math.floor((1 + Math.random()) * 0x10000)
+			.toString(16)
+			.substring(1);
+	}
+
+	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
