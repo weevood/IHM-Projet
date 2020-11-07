@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import Stickies from './components/Stickies';
 import {TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "./utils/constants";
 import {EditorState} from "draft-js";
-import moment from "moment";
 
 const today = require('./data/today');
 const remains = require('./data/remains');
@@ -17,20 +16,31 @@ export default class extends Component
 
 	constructor(props)
 	{
+		const notes = remains.default.concat(repeat.default).concat(once.default);
+		/*const today = shuffle(notes).slice(0, 3);
+		today.forEach((note, idx) =>
+		{
+			today[idx].state = 'today';
+			today[idx].grid.w = 2;
+			today[idx].grid.h = 2;
+		});*/
 		super(props);
 		this.state = {
 			addNote: false,
 			currentNote: null,
 			curtain: false,
-			today: today.default,
+			notes: notes,
 			remains: remains.default,
 			repeat: repeat.default,
 			once: once.default,
+			today: today.default,
 		};
+		this.onDelete = this.onDelete.bind(this);
 		this.onChange = this.onChange.bind(this);
-		this.toggleCurtain = this.toggleCurtain.bind(this);
-		this.addNote = this.addNote.bind(this);
+		this.onChangeType = this.onChangeType.bind(this);
+		this.hideCurtain = this.hideCurtain.bind(this);
 		this.showNote = this.showNote.bind(this);
+		this.addNote = this.addNote.bind(this);
 		this.createNote = this.createNote.bind(this);
 	}
 
@@ -41,15 +51,70 @@ export default class extends Component
 		});
 	}
 
-	toggleCurtain(e)
+	onChangeType(currentNote)
+	{
+		this.onDelete(currentNote);
+
+		currentNote.contentEditable = false;
+		currentNote.showSettings = false;
+		if (currentNote.type === TYPE_REMAINS)
+		{
+			this.setState({
+				remains: this.state.remains.concat(currentNote),
+			});
+		} else if (currentNote.type === TYPE_REPEAT)
+		{
+			this.setState({
+				repeat: this.state.repeat.concat(currentNote),
+			});
+		} else if (currentNote.type === TYPE_ONCE)
+		{
+			this.setState({
+				once: this.state.once.concat(currentNote),
+			});
+		}
+	}
+
+	onDelete(currentNote)
+	{
+		const today = this.state.today;
+		const remains = this.state.remains;
+		const repeat = this.state.repeat;
+		const once = this.state.once;
+		today.forEach((note, index) =>
+		{
+			if (currentNote.id === note.id) today.splice(index, 1);
+		});
+		remains.forEach((note, index) =>
+		{
+			if (currentNote.id === note.id) remains.splice(index, 1);
+		});
+		repeat.forEach((note, index) =>
+		{
+			if (currentNote.id === note.id) repeat.splice(index, 1);
+		});
+		once.forEach((note, index) =>
+		{
+			if (currentNote.id === note.id) once.splice(index, 1);
+		});
+		this.setState({
+			today: today, remains: remains, repeat: repeat, once: once, curtain: false, currentNote: null
+		});
+	}
+
+	hideCurtain(e)
 	{
 		e.stopPropagation();
 		this.setState({
-			curtain: false
+			curtain: false, addNote: false
 		});
 		if (this.state.currentNote !== null)
 		{
 			this.state.currentNote.contentEditable = false;
+			this.state.currentNote.showSettings = false;
+			this.setState({
+				currentNote: null
+			});
 		}
 	}
 
@@ -79,24 +144,35 @@ export default class extends Component
 		const uid = guid();
 		const note = {
 			grid: {
-				i: `${uid}`, x: this.state.notes.length * 2 % (this.state.cols || 12), y: Infinity, // puts it at the bottom
+				i: `${uid}`,
+				x: this.state.notes.length * 2 % (this.state.cols || 12),
+				y: Infinity, // puts it at the bottom
 				w: 1, h: 1
-			}, id: uid, editorState: EditorState.createEmpty(), title: 'Title', type: type, contentEditable: false
+			},
+			id: uid,
+			editorState: EditorState.createEmpty(),
+			title: 'Title',
+			type: type,
+			contentEditable: true,
+			showSettings: false
 		};
 		if (type === TYPE_REMAINS)
 		{
 			this.setState({
 				remains: this.state.remains.concat(note),
+				currentNote: note
 			});
 		} else if (type === TYPE_REPEAT)
 		{
 			this.setState({
 				repeat: this.state.repeat.concat(note),
+				currentNote: note
 			});
 		} else if (type === TYPE_ONCE)
 		{
 			this.setState({
 				once: this.state.once.concat(note),
+				currentNote: note
 			});
 		}
 	}
@@ -115,8 +191,10 @@ export default class extends Component
 						style={{float: 'left'}}
 						title={true}
 						footer={true}
-						onChange={this.onChange}
 						showNote={this.showNote}
+						onChange={this.onChange}
+						onChangeType={this.onChangeType}
+						onDelete={this.onDelete}
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
@@ -136,8 +214,10 @@ export default class extends Component
 						style={{float: 'left'}}
 						title={true}
 						footer={false}
-						onChange={this.onChange}
 						showNote={this.showNote}
+						onChange={this.onChange}
+						onChangeType={this.onChangeType}
+						onDelete={this.onDelete}
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
@@ -149,8 +229,10 @@ export default class extends Component
 						style={{float: 'left'}}
 						title={true}
 						footer={false}
-						onChange={this.onChange}
 						showNote={this.showNote}
+						onChange={this.onChange}
+						onChangeType={this.onChangeType}
+						onDelete={this.onDelete}
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
@@ -162,20 +244,24 @@ export default class extends Component
 						style={{float: 'left'}}
 						title={true}
 						footer={false}
-						onChange={this.onChange}
 						showNote={this.showNote}
+						onChange={this.onChange}
+						onChangeType={this.onChangeType}
+						onDelete={this.onDelete}
 						wrapperStyle={wrapperStyle}
 					/>
 				</div>
 			</div>
-			{this.state.curtain ? <div className="curtain" onClick={(e) => this.toggleCurtain(e)}>
+			{this.state.curtain ? <div className="curtain" onClick={(e) => this.hideCurtain(e)}>
 				{this.state.currentNote ? <Stickies
 					notes={[this.state.currentNote]}
 					style={{float: 'left'}}
 					title={true}
 					footer={true}
-					onChange={this.onChange}
 					showNote={this.showNote}
+					onChange={this.onChange}
+					onChangeType={this.onChangeType}
+					onDelete={this.onDelete}
 					wrapperStyle={{
 						height: '100vh', width: '100%', overflow: 'auto'
 					}}
@@ -211,4 +297,15 @@ function guid()
 	}
 
 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+
+function shuffle(array) {
+	let i = array.length - 1;
+	for (; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		const temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+	return array;
 }

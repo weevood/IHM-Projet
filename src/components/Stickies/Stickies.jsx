@@ -4,7 +4,7 @@ import moment from 'moment';
 import ContentEditable from './ContentEditable';
 import './styles.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCog, faExclamation} from '@fortawesome/free-solid-svg-icons'
+import {faArrowAltCircleLeft, faCog, faExclamation} from '@fortawesome/free-solid-svg-icons'
 import {STATE_TODAY, TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "../../utils/constants";
 
 const WidthProvider = require('react-grid-layout').WidthProvider;
@@ -59,6 +59,8 @@ export default class extends Component
 		this.editNote = this.editNote.bind(this);
 		this.onLayoutChange = this.onLayoutChange.bind(this);
 		this.onBreakpointChange = this.onBreakpointChange.bind(this);
+		this.setType = this.setType.bind(this);
+		this.setImportant = this.setImportant.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps)
@@ -123,8 +125,53 @@ export default class extends Component
 	editNote(e, currentNote)
 	{
 		e.stopPropagation();
-		console.log('editNote');
-		// TODO
+		const notes = this.state.notes;
+		notes.forEach((note) =>
+		{
+			if (currentNote.id === note.id)
+			{
+				currentNote.showSettings = !currentNote.showSettings;
+			}
+		});
+		this.setState({
+			notes
+		});
+	}
+
+	setType(currentNote, type)
+	{
+		const notes = this.state.notes;
+		notes.forEach((note) =>
+		{
+			if (currentNote.id === note.id)
+			{
+				currentNote.type = type;
+			}
+		});
+		this.setState({
+			notes
+		}, () =>
+		{
+			if (typeof this.props.onChangeType === 'function')
+			{
+				this.props.onChangeType(currentNote);
+			}
+		});
+	}
+
+	setImportant(currentNote)
+	{
+		const notes = this.state.notes;
+		notes.forEach((note) =>
+		{
+			if (currentNote.id === note.id)
+			{
+				currentNote.important = !currentNote.important;
+			}
+		});
+		this.setState({
+			notes
+		});
 	}
 
 	deleteNote(currentNote)
@@ -190,22 +237,11 @@ export default class extends Component
 	renderNote(note)
 	{
 
-		const addIcon = this.props.addIcon || '';
-		const addStyle = this.props.addStyle || {};
+		note.grid.y = note.grid.y || Infinity;
+		note.contentEditable = note.contentEditable || false;
+		note.showSettings = note.showSettings || false;
 
-		const closeIcon = this.props.closeIcon || '';
-		const closeStyle = Object.assign({}, {
-			display: (this.state.notes.length === 1) ? 'none' : 'block'
-		}, this.props.closeStyle || {});
-
-		const editIcon = this.props.editIcon || '';
-		const editStyle = this.props.addStyle || {};
-
-		note.contentEditable = false;
-
-		if (note.type === TYPE_REMAINS) note.color = '#c0392b';
-		if (note.type === TYPE_REPEAT) note.color = '#2980b9';
-		if (note.type === TYPE_ONCE) note.color = '#f1c40f';
+		if (note.type === TYPE_REMAINS) note.color = '#c0392b'; else if (note.type === TYPE_REPEAT) note.color = '#2980b9'; else if (note.type === TYPE_ONCE) note.color = '#f1c40f';
 
 		const noteStyle = Object.assign({}, {
 			background: note.color, transform: note.degree
@@ -215,22 +251,19 @@ export default class extends Component
 			display: this.props.header === false ? 'none' : 'block'
 		}, this.props.noteHeaderStyle || {});
 
-		const noteBodyStyle = this.props.noteBodyStyle || {};
-
 		const noteTitleStyle = Object.assign({}, {
 			display: this.props.title === false ? 'none' : 'block'
 		}, this.props.noteTitleStyle || {});
 
+		const noteBodyStyle = this.props.noteBodyStyle || {};
+
 		const noteFooterStyle = Object.assign({}, {
-			display: this.props.footer === false ? 'none' : 'block'
+			display: note.contentEditable === false ? 'none' : 'block'
 		}, this.props.noteFooterStyle || {});
 
-		const i = note.grid.add ? '+' : note.grid.i;
-		const grid = note.grid;
-		grid.y = grid.y || Infinity;
-		return (<div key={i} data-grid={grid}>
+		return (<div key={note.grid.add ? '+' : note.grid.i} data-grid={note.grid}>
 			<aside
-				className={`note-wrap note ${note.state === STATE_TODAY ? 'big' : ''}`}
+				className={`note-wrap note ${note.state === STATE_TODAY ? 'big' : ''} ${note.contentEditable === true ? 'currentNote' : ''}`}
 				style={noteStyle}
 				onClick={(e) => this.showNote(e, note)}
 			>
@@ -258,24 +291,63 @@ export default class extends Component
 					 {closeIcon}
 					 </div>*/}
 				</div>
-				<div className="note-body" style={noteBodyStyle}>
-					<Editor
+				<div className={`note-body ${note.showSettings ? 'settings' : ''} `} style={noteBodyStyle}>
+					{note.showSettings ? <div className="text-center">
+						<div className="my-4">
+							<div className="custom-control custom-radio custom-control-inline">
+								<input type="radio" id="remains" name="remains" className="custom-control-input"
+									   checked={note.type === TYPE_REMAINS}
+									   onChange={() => this.setType(note, TYPE_REMAINS)}/>
+								<label className="custom-control-label text-uppercase"
+									   htmlFor="remains">{TYPE_REMAINS}</label>
+							</div>
+							<div className="custom-control custom-radio custom-control-inline">
+								<input type="radio" id="repeat" name="repeat" className="custom-control-input"
+									   checked={note.type === TYPE_REPEAT}
+									   onChange={() => this.setType(note, TYPE_REPEAT)}/>
+								<label className="custom-control-label text-uppercase"
+									   htmlFor="repeat">{TYPE_REPEAT}</label>
+							</div>
+							<div className="custom-control custom-radio custom-control-inline">
+								<input type="radio" id="once" name="once" className="custom-control-input"
+									   checked={note.type === TYPE_ONCE}
+									   onChange={() => this.setType(note, TYPE_ONCE)}/>
+								<label className="custom-control-label text-uppercase"
+									   htmlFor="once">{TYPE_ONCE}</label>
+							</div>
+						</div>
+						<div className="my-4">
+							<div className="custom-control custom-checkbox mr-sm-2">
+								<input type="checkbox" className="custom-control-input" id="important"
+									   checked={note.important}
+									   onChange={() => this.setImportant(note)}/>
+								<label className="custom-control-label" htmlFor="important">Important</label>
+							</div>
+						</div>
+						<div className="my-4">
+							<button type="button" className="btn btn-outline-danger"
+									onClick={() => this.deleteNote(note)}>Supprimer
+							</button>
+						</div>
+					</div> : <Editor
 						editorState={note.editorState}
 						onChange={editorState => this.onChange(editorState, note)}
 						placeholder="Add your notes..."
-					/>
+					/>}
 				</div>
 				<div
 					className="note-footer"
 					style={noteFooterStyle}
 				>
-					<div
-						className={`${editIcon ? '' : 'edit'}`}
-						style={editStyle}
-						onClick={(e) => this.editNote(e, note)}
+					{note.showSettings ? <div className="back"
+											  onClick={(e) => this.editNote(e, note)}
+					>
+						<FontAwesomeIcon icon={faArrowAltCircleLeft}/>
+					</div> : <div className="edit"
+								  onClick={(e) => this.editNote(e, note)}
 					>
 						<FontAwesomeIcon icon={faCog}/>
-					</div>
+					</div>}
 					{/*{note.timeStamp}*/}
 				</div>
 			</aside>

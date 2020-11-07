@@ -99,6 +99,7 @@
     background: #F7E999;
 
     &.big {
+      .back,
       .edit {
         font-size: 2em;
       }
@@ -129,6 +130,7 @@
     color: #e74c3c;
   }
 
+  .back,
   .edit {
     float: right;
     line-height: 1;
@@ -213,6 +215,10 @@
     padding: 5px;
     font-size: 0.7em;
     line-height: 1.2;
+
+    &.settings {
+      background-color: #34495e;
+    }
   }
 
   .note-footer {
@@ -318,12 +324,6 @@
   color: white !important;
   border: 0;
   background-color: #c0392b;
-
-  &:active,
-  &:hover,
-  &:focus {
-    background-color: darken(#c0392b, 10%);
-  }
 }
 
 .btn-repeat,
@@ -331,12 +331,14 @@
 .btn-remains {
   color: white !important;
   border: 0;
+  text-transform: uppercase;
 }
 
 .btn-repeat {
   background-color: #2980b9;
 
   &:active,
+  &.active,
   &:hover,
   &:focus {
     background-color: darken(#2980b9, 10%);
@@ -347,6 +349,7 @@
   background-color: #f1c40f;
 
   &:active,
+  &.active,
   &:hover,
   &:focus {
     background-color: darken(#f1c40f, 10%);
@@ -357,8 +360,21 @@
   background-color: #c0392b;
 
   &:active,
+  &.active,
   &:hover,
   &:focus {
     background-color: darken(#c0392b, 10%);
   }
+}
+
+.btn-outline-danger {
+  border-width: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+.currentNote {
+  width: 400px !important;
+  height: 400px !important;
 }
