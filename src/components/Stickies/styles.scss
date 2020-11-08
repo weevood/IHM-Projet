@@ -1,5 +1,16 @@
-/* Note styles */
-/** Grid Styles **/
+// Variables
+
+$white: #ffffff;
+$gray: #34495e;
+$dark-gray: #2c3e50;
+$red: #e74c3c;
+
+$remains-color: #c0392b;
+$repeat-color: #2980b9;
+$once-color: #f1c40f;
+
+// Generals
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -7,6 +18,8 @@
 }
 
 .clearfix {
+  *zoom: 1;
+
   &:before {
     content: " ";
     display: table;
@@ -17,8 +30,6 @@
     display: table;
     clear: both;
   }
-
-  *zoom: 1;
 }
 
 .curtain {
@@ -30,14 +41,62 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+// Buttons
+
+.btn-repeat,
+.btn-once,
+.btn-remains {
+  color: $white !important;
+  border: 0;
+  text-transform: uppercase;
+}
+
+.btn-repeat {
+  background-color: $repeat-color;
+
+  &:active,
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: darken($repeat-color, 10%);
+  }
+}
+
+.btn-once {
+  background-color: $once-color;
+
+  &:active,
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: darken($once-color, 10%);
+  }
+}
+
+.btn-remains {
+  background-color: $remains-color;
+
+  &:active,
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: darken($remains-color, 10%);
+  }
+}
+
+.btn-outline-danger {
+  border-width: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+// Stickies
+
 .react-stickies-wrapper {
   height: 100%;
   width: 100%;
   position: relative;
-
-  &::-moz-selection {
-    text-shadow: none;
-  }
 
   &::selection {
     text-shadow: none;
@@ -49,12 +108,10 @@
     position: relative;
     vertical-align: top;
     display: inline-block;
-    font-family: Englebert, Arial;
-    color: #4b453c;
-    background: #F7E999;
+    color: $gray;
     line-height: 34px;
     text-align: center;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.3);
 
     &:before {
       display: block;
@@ -66,12 +123,8 @@
     }
 
     .title {
-      color: white !important;
+      color: $white !important;
       text-decoration: none;
-      -webkit-transition: all 0.4s ease;
-      -moz-transition: all 0.4s ease;
-      -o-transition: all 0.4s ease;
-      -ms-transition: all 0.4s ease;
       transition: all 0.4s ease;
       position: absolute;
       bottom: 0;
@@ -81,24 +134,11 @@
       font-size: 0.8em;
 
       &:hover {
-        color: #000;
+        color: $dark-gray;
       }
     }
-  }
 
-  .note-wrap.tape {
-    &:before {
-      background: rgba(227, 200, 114, 0.4);
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-      top: -13px;
-      left: 50px;
-    }
-  }
-
-  .note {
-    background: #F7E999;
-
-    &.big {
+    &.today {
       .back,
       .edit {
         font-size: 2em;
@@ -114,157 +154,67 @@
       }
     }
 
-    &.editable {
+    &.currentNote {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: scale(2.5);
+      transform: scale(2);
       z-index: 1;
     }
 
-  }
+    .note-header {
+      position: relative;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.1);
+      height: 34px;
 
-  .important {
-    float: left;
-    margin-left: 8px;
-    color: #e74c3c;
-  }
+      .important {
+        float: left;
+        margin-left: 8px;
+        color: $red;
+      }
 
-  .back,
-  .edit {
-    float: right;
-    line-height: 1;
-    font-size: 1em;
-    padding: 5px;
-    opacity: 0.8;
-    transition: opacity 0.4s ease;
-    color: #2c3e50;
-
-    &:hover {
-      opacity: 1;
-      cursor: pointer;
-    }
-  }
-
-  .close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
-    opacity: 0.3;
-
-    &:hover {
-      opacity: 1;
-      cursor: pointer;
     }
 
-    &:before {
+    .note-body {
+      padding: 5px;
+      font-size: 0.7em;
+      line-height: 1.2;
+
+      &.settings {
+        background-color: $dark-gray;
+      }
+    }
+
+    .note-footer {
       position: absolute;
-      left: 15px;
-      content: ' ';
-      height: 16px;
-      width: 2px;
-      background-color: #333;
-      transform: rotate(45deg);
-    }
+      left: 0;
+      bottom: 0;
+      text-decoration: none;
+      width: 100%;
+      font-size: 10px;
 
-    &:after {
-      transform: rotate(-45deg);
-    }
-  }
+      .back,
+      .edit {
+        float: right;
+        line-height: 1;
+        font-size: 1em;
+        padding: 5px;
+        opacity: 0.8;
+        transition: opacity 0.4s ease;
+        color: $dark-gray;
 
-  .add {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
-    opacity: 0.3;
-    z-index: 2;
-
-    &:hover {
-      opacity: 1;
-      cursor: pointer;
-    }
-
-    &:before {
-      position: absolute;
-      left: 15px;
-      content: ' ';
-      height: 16px;
-      width: 2px;
-      background-color: #333;
-      transform: rotate(0deg);
-    }
-
-    &:after {
-      transform: rotate(-90deg);
-    }
-  }
-
-  .note-header {
-    position: relative;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.1);
-    height: 34px;
-  }
-
-  .note-body {
-    padding: 5px;
-    font-size: 0.7em;
-    line-height: 1.2;
-
-    &.settings {
-      background-color: #34495e;
-    }
-  }
-
-  .note-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    text-decoration: none;
-    width: 100%;
-    font-size: 10px;
-  }
-
-  [contenteditable] {
-    &:focus {
-      outline: 0px solid transparent;
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
     }
   }
 }
 
-.close {
-  &:after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 16px;
-    width: 2px;
-    background-color: #333;
-  }
-}
-
-.add {
-  &:after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 16px;
-    width: 2px;
-    background-color: #333;
-  }
-}
-
-.react-grid-dragHandleExample {
-  cursor: move;
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
+// React grid
 
 .react-grid-layout {
   position: relative;
@@ -307,7 +257,7 @@
 }
 
 .react-grid-item.react-grid-placeholder {
-  background: red;
+  background: $red;
   opacity: 0.2;
   transition-duration: 100ms;
   z-index: 2;
@@ -316,65 +266,4 @@
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-}
-
-.btn-repeat,
-.btn-once,
-.btn-remains {
-  color: white !important;
-  border: 0;
-  background-color: #c0392b;
-}
-
-.btn-repeat,
-.btn-once,
-.btn-remains {
-  color: white !important;
-  border: 0;
-  text-transform: uppercase;
-}
-
-.btn-repeat {
-  background-color: #2980b9;
-
-  &:active,
-  &.active,
-  &:hover,
-  &:focus {
-    background-color: darken(#2980b9, 10%);
-  }
-}
-
-.btn-once {
-  background-color: #f1c40f;
-
-  &:active,
-  &.active,
-  &:hover,
-  &:focus {
-    background-color: darken(#f1c40f, 10%);
-  }
-}
-
-.btn-remains {
-  background-color: #c0392b;
-
-  &:active,
-  &.active,
-  &:hover,
-  &:focus {
-    background-color: darken(#c0392b, 10%);
-  }
-}
-
-.btn-outline-danger {
-  border-width: 4px;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.8em;
-}
-
-.currentNote {
-  width: 400px !important;
-  height: 400px !important;
 }

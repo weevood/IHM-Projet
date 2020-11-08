@@ -2,11 +2,20 @@ import React, {Component} from 'react';
 import {ContentState, Editor, EditorState} from 'draft-js';
 import moment from 'moment';
 import ContentEditable from './ContentEditable';
-import './styles.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowAltCircleLeft, faCog, faExclamation} from '@fortawesome/free-solid-svg-icons'
-import {STATE_TODAY, TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "../../utils/constants";
+import {
+	COLOR_ONCE,
+	COLOR_REMAINS,
+	COLOR_REPEAT,
+	STATE_TODAY,
+	TYPE_ONCE,
+	TYPE_REMAINS,
+	TYPE_REPEAT
+} from "../../utils/constants";
+import './styles.css';
 
+const COLORS = [COLOR_ONCE, COLOR_REMAINS, COLOR_REPEAT];
 const WidthProvider = require('react-grid-layout').WidthProvider;
 let ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
@@ -45,15 +54,20 @@ function transformContentState(notes)
 
 export default class extends Component
 {
+
 	constructor(props)
 	{
+
 		super(props);
+
 		this.state = {
 			newCounter: 0,
 			notes: props.notes ? tranformEditorState(props.notes) : [],
-			colors: props.colors || ['#c0392b', '#2980b9', '#f1c40f'],
+			colors: props.colors || COLORS,
 			dateFormat: props.dateFormat || 'lll'
 		};
+
+		// Bind all methods
 		this.renderNote = this.renderNote.bind(this);
 		this.showNote = this.showNote.bind(this);
 		this.editNote = this.editNote.bind(this);
@@ -72,7 +86,7 @@ export default class extends Component
 			});
 		}
 		this.setState({
-			colors: nextProps.colors || ['#c0392b', '#2980b9', '#f1c40f'], dateFormat: nextProps.dateFormat || 'lll'
+			colors: nextProps.colors || COLORS, dateFormat: nextProps.dateFormat || 'lll'
 		});
 	}
 
@@ -241,7 +255,7 @@ export default class extends Component
 		note.contentEditable = note.contentEditable || false;
 		note.showSettings = note.showSettings || false;
 
-		if (note.type === TYPE_REMAINS) note.color = '#c0392b'; else if (note.type === TYPE_REPEAT) note.color = '#2980b9'; else if (note.type === TYPE_ONCE) note.color = '#f1c40f';
+		if (note.type === TYPE_REMAINS) note.color = COLOR_REMAINS; else if (note.type === TYPE_REPEAT) note.color = COLOR_REPEAT; else if (note.type === TYPE_ONCE) note.color = COLOR_ONCE;
 
 		const noteStyle = Object.assign({}, {
 			background: note.color, transform: note.degree
@@ -263,18 +277,11 @@ export default class extends Component
 
 		return (<div key={note.grid.add ? '+' : note.grid.i} data-grid={note.grid}>
 			<aside
-				className={`note-wrap note ${note.state === STATE_TODAY ? 'big' : ''} ${note.contentEditable === true ? 'currentNote' : ''}`}
+				className={`note-wrap ${note.state === STATE_TODAY ? 'today' : ''} ${note.contentEditable === true ? 'currentNote' : ''}`}
 				style={noteStyle}
 				onClick={(e) => this.showNote(e, note)}
 			>
 				<div className="note-header" style={noteHeaderStyle}>
-					{/*<div
-					 className={`${addIcon ? '' : 'add'}`}
-					 onClick={this.createBlankNote}
-					 style={addStyle}
-					 >
-					 {addIcon}
-					 </div>*/}
 					{note.important ? <span className="important">
 						<FontAwesomeIcon icon={faExclamation}/>
 					</span> : null}
@@ -283,13 +290,6 @@ export default class extends Component
 							html={note.title}
 							onChange={html => this.handleTitleChange(html, note)}/>}
 					</div>
-					{/*<div
-					 className={`${closeIcon ? '' : 'close'}`}
-					 style={closeStyle}
-					 onClick={() => this.deleteNote(note)}
-					 >
-					 {closeIcon}
-					 </div>*/}
 				</div>
 				<div className={`note-body ${note.showSettings ? 'settings' : ''} `} style={noteBodyStyle}>
 					{note.showSettings ? <div className="text-center">
@@ -348,7 +348,6 @@ export default class extends Component
 					>
 						<FontAwesomeIcon icon={faCog}/>
 					</div>}
-					{/*{note.timeStamp}*/}
 				</div>
 			</aside>
 		</div>);

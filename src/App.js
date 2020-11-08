@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-// import Stickies from 'react-stickies';
 import Stickies from './components/Stickies';
 import {TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "./utils/constants";
 import {EditorState} from "draft-js";
+import {guid} from "./utils/utils";
 
 const today = require('./data/today');
 const remains = require('./data/remains');
@@ -25,6 +25,7 @@ export default class extends Component
 			today[idx].grid.h = 2;
 		});*/
 		super(props);
+
 		this.state = {
 			addNote: false,
 			currentNote: null,
@@ -35,6 +36,8 @@ export default class extends Component
 			once: once.default,
 			today: today.default,
 		};
+
+		// Bind all methods
 		this.onDelete = this.onDelete.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.onChangeType = this.onChangeType.bind(this);
@@ -54,7 +57,6 @@ export default class extends Component
 	onChangeType(currentNote)
 	{
 		this.onDelete(currentNote);
-
 		currentNote.contentEditable = false;
 		currentNote.showSettings = false;
 		if (currentNote.type === TYPE_REMAINS)
@@ -281,31 +283,4 @@ export default class extends Component
 			</div> : null}
 		</div>);
 	}
-}
-
-/**
- * @method: guid
- * @desc: Generates unique guid
- **/
-function guid()
-{
-	function s4()
-	{
-		return Math.floor((1 + Math.random()) * 0x10000)
-			.toString(16)
-			.substring(1);
-	}
-
-	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
-
-function shuffle(array) {
-	let i = array.length - 1;
-	for (; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		const temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
-	return array;
 }
