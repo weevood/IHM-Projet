@@ -4,6 +4,28 @@
   box-sizing: border-box;
 }
 
+h1, p, span {
+  color: #ffffff;
+}
+
+h2.once {
+  color: #f1c40f;
+}
+h2.remains {
+  color: #c0392b;
+}
+h2.repeat {
+  color: #2980b9;
+}
+
+.container, .container-fluid {
+  text-align: center;
+}
+
+.bg-secondary {
+  background-color: #d2d5d8 !important;
+}
+
 .clearfix {
   *zoom: 1;
 }
@@ -17,6 +39,10 @@
   clear: both;
 }
 
+.today {
+  height: 42vh;
+}
+
 .curtain {
   position: absolute;
   top: 0;
@@ -24,6 +50,25 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.btn-add-container {
+  padding-top: 21vh;
+}
+.btn-add-container .btn-add {
+  position: relative;
+  margin-top: -50%;
+  width: 100%;
+  padding-top: 132px;
+  border-radius: 500px;
+}
+.btn-add-container .btn-add i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -47px;
+  margin-top: -55px;
+  font-size: 110px;
 }
 
 .btn-repeat,

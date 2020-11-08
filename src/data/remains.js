@@ -7,11 +7,7 @@ const data = [
     "grid": {
       "i": "2020-11-02-011",
       "x": 0,
-      "y": null,
-      "w": 1,
-      "h" : 1,
-      "isDraggable": false,
-      "isResizable": false
+      "y": 0
     }
   },
   {
@@ -21,12 +17,8 @@ const data = [
     "text": "1414",
     "grid": {
       "i": "2020-11-02-012",
-      "x": 2,
-      "y": 0,
-      "w": 1,
-      "h" : 1,
-      "isDraggable": false,
-      "isResizable": false
+      "x": 1,
+      "y": 0
     }
   },
   {
@@ -37,11 +29,7 @@ const data = [
     "grid": {
       "i": "2020-11-02-013",
       "x": 0,
-      "y": 2,
-      "w": 1,
-      "h" : 1,
-      "isDraggable": false,
-      "isResizable": false
+      "y": 1
     }
   }
 ]

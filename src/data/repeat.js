@@ -8,11 +8,7 @@ const data = [
     "grid": {
       "i": "2020-11-02-021",
       "x": 0,
-      "y": 0,
-      "w": 1,
-      "h" : 1,
-      "isDraggable": false,
-      "isResizable": false
+      "y": 0
     }
   },
   {
@@ -22,12 +18,8 @@ const data = [
     "title": "Visite medicale",
     "grid": {
       "i": "2020-11-02-022",
-      "x": 2,
-      "y": 0,
-      "w": 1,
-      "h" : 1,
-      "isDraggable": false,
-      "isResizable": false
+      "x": 1,
+      "y": 0
     }
   },
   {
@@ -38,11 +30,7 @@ const data = [
     "grid": {
       "i": "2020-11-02-023",
       "x": 0,
-      "y": 2,
-      "w": 1,
-      "h" : 1,
-      "isDraggable": false,
-      "isResizable": false
+      "y": 1
     }
   },
 ]

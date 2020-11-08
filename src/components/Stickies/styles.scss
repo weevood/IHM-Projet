@@ -3,6 +3,7 @@
 $white: #ffffff;
 $gray: #34495e;
 $dark-gray: #2c3e50;
+$light-gray: #d2d5d8;
 $red: #e74c3c;
 
 $remains-color: #c0392b;
@@ -15,6 +16,32 @@ $once-color: #f1c40f;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+h1, p, span {
+  color: $white;
+}
+
+h2 {
+  &.once {
+    color: $once-color;
+  }
+
+  &.remains {
+    color: $remains-color;
+  }
+
+  &.repeat {
+    color: $repeat-color;
+  }
+}
+
+.container, .container-fluid {
+  text-align: center;
+}
+
+.bg-secondary {
+  background-color: $light-gray !important;
 }
 
 .clearfix {
@@ -32,6 +59,10 @@ $once-color: #f1c40f;
   }
 }
 
+.today {
+  height: 42vh;
+}
+
 .curtain {
   position: absolute;
   top: 0;
@@ -42,6 +73,27 @@ $once-color: #f1c40f;
 }
 
 // Buttons
+
+.btn-add-container {
+  padding-top: 21vh;
+
+  .btn-add {
+    position: relative;
+    margin-top: -50%;
+    width: 100%;
+    padding-top: 132px;
+    border-radius: 500px;
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -47px;
+      margin-top: -55px;
+      font-size: 110px;
+    }
+  }
+}
 
 .btn-repeat,
 .btn-once,
