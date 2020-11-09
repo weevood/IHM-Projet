@@ -88,6 +88,7 @@ Après de multiples heures de développement, nous avons pu réaliser l'interfac
 
 ### Améliorations possibles
 
+- Création d'un algorithme de choix des post-its "today" 
 - Placement des post-its lors de modifications de type
 
 ### Environement (React.js)

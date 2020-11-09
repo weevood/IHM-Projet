@@ -2,8 +2,8 @@ const data = [
   {
     "id": "2020-11-02-031",
     "type": 'once',
-    "title": "Medecin",
-    "text": "Telephonner au docteur Michou au 076/345.54.56.",
+    "title": "Médecin 👨‍⚕️",
+    "text": "Téléphonner au docteur Michou au 076/345.54.56.",
     "grid": {
       "i": "2020-11-02-031",
       "x": 0,
@@ -13,7 +13,7 @@ const data = [
   {
     "id": "2020-11-02-032",
     "type": 'once',
-    "title": "Liste de course",
+    "title": "Liste de course 📝",
     "text": "- Lait\n - Fromage\n - Beure\n - Soupe\n",
     "grid": {
       "i": "2020-11-02-032",
@@ -24,7 +24,7 @@ const data = [
   {
     "id": "2020-11-02-036",
     "type": 'once',
-    "title": "Machine a cafe",
+    "title": "Machine a café",
     "text": "Reparer la machine a cafe.",
     "grid": {
       "i": "2020-11-02-036",
@@ -35,8 +35,8 @@ const data = [
   {
     "id": "2020-11-02-034",
     "type": 'once',
-    "title": "Boucherie",
-    "text": "Reserver la viande pour samedi.",
+    "title": "Boucherie 🍖",
+    "text": "Réserver la viande pour samedi.",
     "grid": {
       "i": "2020-11-02-034",
       "x": 1,
@@ -46,8 +46,8 @@ const data = [
   {
     "id": "2020-11-02-035",
     "type": 'once',
-    "title": "Boulangerie",
-    "text": "Reserver 2kg de pain pour samedi.",
+    "title": "Boulangerie 🍞",
+    "text": "Réserver 2kg de pain pour samedi.",
     "grid": {
       "i": "2020-11-02-035",
       "x": 0,

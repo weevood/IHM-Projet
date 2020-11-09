@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ContentState, Editor, EditorState} from 'draft-js';
+import {ContentState, convertFromHTML, Editor, EditorState} from 'draft-js';
 import moment from 'moment';
 import ContentEditable from './ContentEditable';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -25,7 +25,18 @@ function tranformEditorState(notes)
 		const data = notesData.map((note) =>
 		{
 				const text = note.default ? note.default.text : note.text || '';
-				note.editorState = note.editorState || EditorState.createWithContent(ContentState.createFromText(text));
+				if (text.includes('-'))
+				{
+						const textConverted = text.replaceAll('-', '<h1>coucou</h1> ');
+						const textToHTML = convertFromHTML(textConverted);
+						console.log(textConverted);
+						const content = ContentState.createFromBlockArray(textToHTML.contentBlocks, textToHTML.entityMap);
+						note.editorState = note.editorState || EditorState.createWithContent(content);
+				}
+				else
+				{
+						note.editorState = note.editorState || EditorState.createWithContent(ContentState.createFromText(text));
+				}
 				note.isExtLink = (note.text && note.text.includes('http') === true);
 				return note;
 		});
@@ -145,7 +156,6 @@ export default class extends Component
 						// Rollback edition after 10 seconds
 						setTimeout(() =>
 						{
-								console.log('rollback');
 								notes.forEach((note) =>
 								{
 										if (currentNote.id === note.id)

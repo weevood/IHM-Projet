@@ -3,7 +3,7 @@ const data = [
     "id": "2020-11-02-021",
     "type": 'repeat',
     "important": 1,
-    "title": "Medicaments",
+    "title": "Médicaments",
     "text": "Prendre 1 Dolipran a 11h30.",
     "grid": {
       "i": "2020-11-02-021",
@@ -14,7 +14,7 @@ const data = [
   {
     "id": "2020-11-02-022",
     "type": 'repeat',
-    "title": "Visite medicale",
+    "title": "Visite médicale",
     "text": "Tous les mercredis a 14h15.",
     "grid": {
       "i": "2020-11-02-022",
@@ -25,7 +25,7 @@ const data = [
   {
     "id": "2020-11-02-023",
     "type": 'repeat',
-    "title": "Medicaments",
+    "title": "Médicaments 💊",
     "text": "Prendre 2 Doliprans a 17h30.",
     "grid": {
       "i": "2020-11-02-023",

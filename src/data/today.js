@@ -3,7 +3,7 @@ const data = [
     "id": "2020-11-02-041",
     "type": 'repeat',
     "important": 1,
-    "title": "Medicaments",
+    "title": "Médicaments",
     "text": "Prendre 1 Dolipran a 11h30.",
     "grid": {
       "i": "2020-11-02-041",
@@ -14,7 +14,7 @@ const data = [
   {
     "id": "2020-11-02-042",
     "type": 'once',
-    "title": "Liste de course",
+    "title": "Liste de course 📝",
     "text": "- Lait\n - Fromage\n - Beure\n - Soupe\n",
     "grid": {
       "i": "2020-11-02-042",
@@ -25,8 +25,8 @@ const data = [
   {
     "id": "2020-11-02-043",
     "type": 'once',
-    "title": "Boucherie",
-    "text": "Reserver la viande pour samedi.",
+    "title": "Boucherie 🍖",
+    "text": "Réserver la viande pour samedi.",
     "grid": {
       "i": "2020-11-02-043",
       "x": 4,
