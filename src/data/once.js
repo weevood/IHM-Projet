@@ -2,8 +2,8 @@ const data = [
   {
     "id": "2020-11-02-031",
     "type": 'once',
-    "text": "Telephonner au docteur Michou au 076/345.54.56.",
     "title": "Medecin",
+    "text": "Telephonner au docteur Michou au 076/345.54.56.",
     "grid": {
       "i": "2020-11-02-031",
       "x": 0,
@@ -13,8 +13,8 @@ const data = [
   {
     "id": "2020-11-02-032",
     "type": 'once',
-    "text": "- Lait\n - Fromage\n - Beure\n - Soupe\n",
     "title": "Liste de course",
+    "text": "- Lait\n - Fromage\n - Beure\n - Soupe\n",
     "grid": {
       "i": "2020-11-02-032",
       "x": 1,
@@ -24,8 +24,8 @@ const data = [
   {
     "id": "2020-11-02-033",
     "type": 'once',
-    "text": "https://www.consoglobe.com/faciliter-vie-seniors-cg",
     "title": "5 astuces de vie",
+    "text": "https://www.consoglobe.com/faciliter-vie-seniors-cg",
     "grid": {
       "i": "2020-11-02-033",
       "x": 0,
@@ -35,8 +35,8 @@ const data = [
   {
     "id": "2020-11-02-034",
     "type": 'once',
-    "text": "Reserver la viande pour samedi.",
     "title": "Boucherie",
+    "text": "Reserver la viande pour samedi.",
     "grid": {
       "i": "2020-11-02-034",
       "x": 1,
@@ -46,11 +46,22 @@ const data = [
   {
     "id": "2020-11-02-035",
     "type": 'once',
-    "text": "Reserver 2kg de pain pour samedi.",
     "title": "Boulangerie",
+    "text": "Reserver 2kg de pain pour samedi.",
     "grid": {
       "i": "2020-11-02-035",
       "x": 0,
+      "y": 2
+    }
+  },
+  {
+    "id": "2020-11-02-036",
+    "type": 'once',
+    "title": "Machine a cafe",
+    "text": "Reparer la machine a cafe.",
+    "grid": {
+      "i": "2020-11-02-036",
+      "x": 1,
       "y": 2
     }
   }

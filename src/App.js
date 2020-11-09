@@ -4,6 +4,7 @@ import {TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "./utils/constants";
 import {EditorState} from "draft-js";
 import {guid} from "./utils/utils";
 
+const today = require('./data/today');
 const remains = require('./data/remains');
 const repeat = require('./data/repeat');
 const once = require('./data/once');
@@ -16,12 +17,12 @@ export default class extends Component
 		constructor(props)
 		{
 				const notes = remains.default.concat(repeat.default).concat(once.default);
-				// const today = shuffle(repeat.default.concat(once.default)).slice(0, 3);
-				const today = [repeat.default[0], once.default[3], once.default[4]];
-				today.forEach((note, idx) =>
-				{
-						today[idx].state = 'today';
-				});
+				/* const today = shuffle(repeat.default.concat(once.default)).slice(0, 3);
+				 const today = [repeat.default[0], once.default[3], once.default[4]];
+				 today.forEach((note, idx) =>
+				 {
+				 today[idx].state = 'today';
+				 }); */
 				super(props);
 
 				this.state = {
@@ -29,10 +30,10 @@ export default class extends Component
 						currentNote: null,
 						curtain: false,
 						notes: notes,
-						remains: remains.default.slice(0, 3),
-						repeat: repeat.default.slice(0, 3),
-						once: once.default.slice(0, 3),
-						today: today.slice(0, 3),
+						remains: remains.default,
+						repeat: repeat.default,
+						once: once.default,
+						today: today.default,
 				};
 
 				// Bind all methods
@@ -155,10 +156,29 @@ export default class extends Component
 		createNote(e, type)
 		{
 				e.stopPropagation();
+				this.setState({
+						addNote: false
+				});
+
 				const uid = guid();
+				let list = this.state.notes.length;
+
+				if (type === TYPE_REMAINS)
+				{
+						list = this.state.remains.length;
+				}
+				else if (type === TYPE_REPEAT)
+				{
+						list = this.state.repeat.length;
+				}
+				else if (type === TYPE_ONCE)
+				{
+						list = this.state.once.length;
+				}
+
 				const note = {
 						grid: {
-								i: `${uid}`, x: this.state.notes.length * 2 % (this.state.cols || 12), y: Infinity, // puts it at the bottom
+								i: `${uid}`, x: (list % 2), y: Infinity, // puts it at the bottom
 								w: 1, h: 1
 						},
 						id: uid,

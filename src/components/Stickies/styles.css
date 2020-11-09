@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-h1, p, span {
+h1, p, span, div {
   color: #ffffff;
 }
 
@@ -50,6 +50,13 @@ h2.repeat {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
+}
+.curtain .currentNote {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(2);
+  z-index: 1;
 }
 
 .btn-add-container {
@@ -158,13 +165,6 @@ h2.repeat {
 .react-stickies-wrapper .note-wrap.today .note-body {
   padding: 10px;
   font-size: 1em;
-}
-.react-stickies-wrapper .note-wrap.currentNote {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: scale(2);
-  z-index: 1;
 }
 .react-stickies-wrapper .note-wrap .note-header {
   position: relative;

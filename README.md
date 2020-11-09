@@ -72,14 +72,21 @@ Nous avons choisi d'utiliser les frameworks [React.js](https://fr.reactjs.org/) 
 La persistance des données sera fait dans une base de données type [MySQL](https://www.mysql.com/fr/) ou [SQLLite](https://www.sqlite.org/index.html).
 Une fois terminée, notre application ser déployé sur un serveur web de type [Netlify](https://www.netlify.com/) puis sera accessible via tout navigateur moderne.
 
-### Inspiration
+## Développement
 
-- https://github.com/ajainvivek/react-stickies
-- https://github.com/cosmicjs/sticky-notes
-- https://github.com/gemmi-arts/react-sticky-notes
-- https://github.com/jeffsdev/React-StickyNotes
+### Adaptations
 
-## Development
+Lors du développement de l'application, nous avons quelques peu modifié notre interface notamment les points suivants
+
+- Sur la page principale, nous avons pu afficher 6 post-its par catégorie au lieu des 4 prévus initialement.
+
+- Nous avons décidé de remplacer les "dossiers de posts-its" par un simple défilement verticale qui nous semble plus cohérent.
+
+Après de multiples heures de développement, nous avons pu réaliser l'interface suivante. Celle-ci est actuellemnt adapté pour un iPad en mode paysage.
+
+![5.Interface.png](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/5.Interface.png)
+
+### Environement (React.js)
 
 In the project directory, you can run:
 
@@ -115,3 +122,10 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+### Inspirations
+
+- [https://github.com/ajainvivek/react-stickies](https://github.com/ajainvivek/react-stickies)
+- [https://github.com/cosmicjs/sticky-notes](https://github.com/cosmicjs/sticky-notes)
+- [https://github.com/gemmi-arts/react-sticky-notes](https://github.com/gemmi-arts/react-sticky-notes)
+- [https://github.com/jeffsdev/React-StickyNotes](https://github.com/jeffsdev/React-StickyNotes)

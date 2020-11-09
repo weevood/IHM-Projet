@@ -250,17 +250,10 @@ export default class extends Component
 		renderNote(note, idx)
 		{
 
-				note.grid.w = 1;
-				note.grid.h = 1;
+				note.grid.w = this.props.today ? 2 : 1;
+				note.grid.h = this.props.today ? 2 : 1;
 				note.contentEditable = note.contentEditable || false;
 				note.showSettings = note.showSettings || false;
-
-				if (this.props.today)
-				{
-						note.grid.w = 2;
-						note.grid.h = 2;
-						note.grid.x = (idx * 2);
-				}
 
 				if (note.type === TYPE_REMAINS)
 				{
