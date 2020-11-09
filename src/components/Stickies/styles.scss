@@ -251,6 +251,23 @@ h2 {
         color: $red;
       }
 
+      .link {
+        float: right;
+        margin-right: 8px;
+
+        &.remains {
+          color: darken($remains-color, 10%);
+        }
+
+        &.repeat {
+          color: lighten($repeat-color, 10%);
+        }
+
+        &.once {
+          color: darken($once-color, 10%);
+        }
+      }
+
     }
 
     .note-body {

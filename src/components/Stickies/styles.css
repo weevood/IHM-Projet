@@ -194,6 +194,19 @@ h2.repeat {
   margin-left: 8px;
   color: #e74c3c;
 }
+.react-stickies-wrapper .note-wrap .note-header .link {
+  float: right;
+  margin-right: 8px;
+}
+.react-stickies-wrapper .note-wrap .note-header .link.remains {
+  color: #962d22;
+}
+.react-stickies-wrapper .note-wrap .note-header .link.repeat {
+  color: #409ad5;
+}
+.react-stickies-wrapper .note-wrap .note-header .link.once {
+  color: #c29d0b;
+}
 .react-stickies-wrapper .note-wrap .note-body {
   padding: 5px;
   font-size: 0.7em;

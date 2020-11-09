@@ -3,7 +3,9 @@ import {ContentState, Editor, EditorState} from 'draft-js';
 import moment from 'moment';
 import ContentEditable from './ContentEditable';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowAltCircleLeft, faCog, faExclamation} from '@fortawesome/free-solid-svg-icons'
+import {
+		faArrowAltCircleLeft, faCog, faExclamation, faExternalLinkAlt, faExternalLinkSquareAlt
+} from '@fortawesome/free-solid-svg-icons'
 import {COLOR_ONCE, COLOR_REMAINS, COLOR_REPEAT, TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "../../utils/constants";
 import './styles.css';
 
@@ -24,6 +26,7 @@ function tranformEditorState(notes)
 		{
 				const text = note.default ? note.default.text : note.text || '';
 				note.editorState = note.editorState || EditorState.createWithContent(ContentState.createFromText(text));
+				note.isExtLink = (note.text && note.text.includes('http') === true);
 				return note;
 		});
 		return data;
@@ -125,9 +128,34 @@ export default class extends Component
 		showNote(e, currentNote)
 		{
 				e.stopPropagation();
-				if (currentNote.text.includes('http'))
+				if (currentNote.isExtLink && !this.props.curtain)
 				{ // Open note link
 						window.open(currentNote.text, '_blank');
+						const notes = this.state.notes;
+						notes.forEach((note) =>
+						{
+								if (currentNote.id === note.id)
+								{
+										currentNote.contentEditable = true;
+								}
+						});
+						this.setState({
+								notes
+						});
+						// Rollback edition after 10 seconds
+						setTimeout(() => {
+								console.log('rollback');
+								notes.forEach((note) =>
+								{
+										if (currentNote.id === note.id)
+										{
+												currentNote.contentEditable = false;
+										}
+								});
+								this.setState({
+										notes
+								});
+						}, 10000);
 				}
 				else
 				{ // Show curtain and note
@@ -138,6 +166,11 @@ export default class extends Component
 		editNote(e, currentNote)
 		{
 				e.stopPropagation();
+				if (currentNote.isExtLink)
+				{ // Show curtain and note
+						currentNote.contentEditable = false;
+						this.props.showNote(e, currentNote);
+				}
 				const notes = this.state.notes;
 				notes.forEach((note) =>
 				{
@@ -301,6 +334,9 @@ export default class extends Component
 														html={note.title}
 														onChange={html => this.handleTitleChange(html, note)}/>}
 										</div>
+										{note.isExtLink ? <span className={`link ${note.type}`}>
+						<FontAwesomeIcon icon={faExternalLinkSquareAlt}/>
+					</span> : null}
 								</div>
 								<div className={`note-body ${note.showSettings ? 'settings' : ''} `} style={noteBodyStyle}>
 										{note.showSettings ? <div className="text-center">

@@ -31,6 +31,17 @@ const data = [
       "x": 0,
       "y": 1
     }
+  },
+  {
+    "id": "2020-11-02-014",
+    "type": 'remains',
+    "title": "Journal",
+    "text": "https://www.rts.ch/info/",
+    "grid": {
+      "i": "2020-11-02-014",
+      "x": 1,
+      "y": 1
+    }
   }
 ]
 

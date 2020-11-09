@@ -222,6 +222,7 @@ export default class extends Component
 														<h1 className="mb-0 text-uppercase">Today</h1>
 														<Stickies
 																notes={this.state.today}
+																curtain={this.state.curtain}
 																today={true}
 																style={{float: 'left'}}
 																title={true}
@@ -246,6 +247,7 @@ export default class extends Component
 														<h2 className="h4 text-uppercase remains">Remains</h2>
 														<Stickies
 																notes={this.state.remains}
+																curtain={this.state.curtain}
 																style={{float: 'left'}}
 																title={true}
 																footer={false}
@@ -261,6 +263,7 @@ export default class extends Component
 														<h2 className="h4 text-uppercase repeat">Repeat</h2>
 														<Stickies
 																notes={this.state.repeat}
+																curtain={this.state.curtain}
 																style={{float: 'left'}}
 																title={true}
 																footer={false}
@@ -276,6 +279,7 @@ export default class extends Component
 														<h2 className="h4 text-uppercase once">Once</h2>
 														<Stickies
 																notes={this.state.once}
+																curtain={this.state.curtain}
 																style={{float: 'left'}}
 																title={true}
 																footer={false}
@@ -290,6 +294,7 @@ export default class extends Component
 										{this.state.curtain ? <div className="curtain" onClick={(e) => this.hideCurtain(e)}>
 												{this.state.currentNote ? <Stickies
 														notes={[this.state.currentNote]}
+														curtain={this.state.curtain}
 														style={{float: 'left'}}
 														title={true}
 														footer={true}
