@@ -143,7 +143,8 @@ export default class extends Component
 								notes
 						});
 						// Rollback edition after 10 seconds
-						setTimeout(() => {
+						setTimeout(() =>
+						{
 								console.log('rollback');
 								notes.forEach((note) =>
 								{

@@ -59,20 +59,24 @@ export default class extends Component
 				this.onDelete(currentNote);
 				currentNote.contentEditable = false;
 				currentNote.showSettings = false;
+				currentNote.y = Infinity;
 				if (currentNote.type === TYPE_REMAINS)
 				{
+						currentNote.x = (this.state.remains.length % 2);
 						this.setState({
 								remains: this.state.remains.concat(currentNote),
 						});
 				}
 				else if (currentNote.type === TYPE_REPEAT)
 				{
+						currentNote.x = (this.state.repeat.length % 2);
 						this.setState({
 								repeat: this.state.repeat.concat(currentNote),
 						});
 				}
 				else if (currentNote.type === TYPE_ONCE)
 				{
+						currentNote.x = (this.state.once.length % 2);
 						this.setState({
 								once: this.state.once.concat(currentNote),
 						});
@@ -154,7 +158,7 @@ export default class extends Component
 				});
 		}
 
-		createNote(e, type)
+		createNote(e, type, data)
 		{
 				e.stopPropagation();
 				this.setState({
@@ -306,7 +310,7 @@ export default class extends Component
 																height: '100vh', width: '100%', overflow: 'auto'
 														}}
 												/> : null}
-												{this.state.addNote ? <div>
+												{this.state.addNote ? <div className="addNote">
 														<h2>New post-it</h2>
 														<button className="btn btn-remains"
 														        onClick={(e) => this.createNote(e, TYPE_REMAINS)}>Remains

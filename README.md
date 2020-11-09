@@ -86,6 +86,10 @@ Après de multiples heures de développement, nous avons pu réaliser l'interfac
 
 ![5.Interface.png](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/5.Interface.png)
 
+### Améliorations possibles
+
+- Placement des post-its lors de modifications de type
+
 ### Environement (React.js)
 
 In the project directory, you can run:
