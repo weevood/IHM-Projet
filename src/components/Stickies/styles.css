@@ -51,12 +51,28 @@ h2.repeat {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
 }
-.curtain .currentNote {
+.curtain .react-grid-item {
+  top: 65%;
+  left: 10%;
+  width: 40% !important;
+  height: 40vh !important;
+  transform: none !important;
+}
+.curtain .react-stickies-wrapper .note-wrap {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: scale(2);
   z-index: 1;
+}
+.curtain .react-stickies-wrapper .note-wrap .note-header .important {
+  margin-left: 15px;
+}
+.curtain .react-stickies-wrapper .note-wrap .note-body {
+  padding: 15px;
+}
+.curtain .react-stickies-wrapper .note-wrap .note-footer .edit, .curtain .react-stickies-wrapper .note-wrap .note-footer .back {
+  font-size: 2em;
 }
 
 .btn-add-container {

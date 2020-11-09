@@ -316,7 +316,7 @@ export default class extends Component
 										</div> : null}
 								</div>
 						</Orientation>
-						<Orientation orientation='portrait'>
+						<Orientation orientation='portrait' alwaysRender={false}>
 								<div style={{background: '#34495e', height: '100vh', paddingTop: '25%'}}>
 										<img src="/rotate.png" alt="Please rotate your device" width="100%" height="auto"/>
 								</div>

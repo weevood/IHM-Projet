@@ -71,12 +71,35 @@ h2 {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
 
-  .currentNote {
+  .react-grid-item {
+    top: 65%;
+    left: 10%;
+    width: 40% !important;
+    height: 40vh !important;
+    transform: none !important;
+  }
+
+  .react-stickies-wrapper .note-wrap {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: scale(2);
     z-index: 1;
+
+    .note-header .important {
+      margin-left: 15px;
+    }
+
+    .note-body {
+      padding: 15px;
+    }
+
+    .note-footer {
+      .edit, .back {
+        font-size: 2em;
+      }
+    }
+
   }
 
 }
