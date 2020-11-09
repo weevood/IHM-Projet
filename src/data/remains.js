@@ -2,7 +2,7 @@ const data = [
   {
     "id": "2020-11-02-011",
     "type": 'remains',
-    "title": "Pompiers ?",
+    "title": "Pompiers 🚒",
     "text": "118",
     "grid": {
       "i": "2020-11-02-011",
@@ -13,7 +13,7 @@ const data = [
   {
     "id": "2020-11-02-012",
     "type": 'remains',
-    "title": "Rega ?",
+    "title": "Rega 🚁",
     "text": "1414",
     "grid": {
       "i": "2020-11-02-012",
@@ -25,7 +25,7 @@ const data = [
     "id": "2020-11-02-013",
     "type": 'remains',
     "title": "Maman",
-    "text": "Ne pas d�ranger!",
+    "text": "Ne pas déranger!",
     "grid": {
       "i": "2020-11-02-013",
       "x": 0,

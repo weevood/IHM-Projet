@@ -3,11 +3,11 @@ import {ContentState, convertFromHTML, Editor, EditorState} from 'draft-js';
 import moment from 'moment';
 import ContentEditable from './ContentEditable';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-		faArrowAltCircleLeft, faCog, faExclamation, faExternalLinkAlt, faExternalLinkSquareAlt
-} from '@fortawesome/free-solid-svg-icons'
+import htmlToDraft from 'html-to-draftjs';
+import {faArrowAltCircleLeft, faCog, faExclamation, faExternalLinkSquareAlt} from '@fortawesome/free-solid-svg-icons'
 import {COLOR_ONCE, COLOR_REMAINS, COLOR_REPEAT, TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "../../utils/constants";
 import './styles.css';
+import {currentDate, currentDay, currentTime} from "../../utils/utils";
 
 const COLORS = [COLOR_ONCE, COLOR_REMAINS, COLOR_REPEAT];
 const WidthProvider = require('react-grid-layout').WidthProvider;
@@ -27,11 +27,17 @@ function tranformEditorState(notes)
 				const text = note.default ? note.default.text : note.text || '';
 				if (text.includes('-'))
 				{
-						const textConverted = text.replaceAll('-', '<h1>coucou</h1> ');
-						const textToHTML = convertFromHTML(textConverted);
-						console.log(textConverted);
-						const content = ContentState.createFromBlockArray(textToHTML.contentBlocks, textToHTML.entityMap);
-						note.editorState = note.editorState || EditorState.createWithContent(content);
+						let textConverted = '';
+						text.split('-').forEach((item, idx) =>
+						{
+								textConverted += '<div class="custom-control custom-checkbox mr-sm-2">';
+								textConverted += '<input type="checkbox" class="custom-control-input" id="list-item-' + idx + '" checked="" />';
+								textConverted += '<label class="custom-control-label" for="list-item-' + idx + '">' + item + '</label>' + '</div>';
+						});
+						const blocksFromHTML = htmlToDraft(textConverted);
+						console.log(blocksFromHTML);
+						const state = ContentState.createFromBlockArray(blocksFromHTML.contentBlocks, blocksFromHTML.entityMap);
+						note.editorState = note.editorState || EditorState.createWithContent(state);
 				}
 				else
 				{
@@ -395,6 +401,18 @@ export default class extends Component
 								</div>
 								<div className="note-footer"
 								     style={noteFooterStyle}>
+										{note.type !== TYPE_REMAINS ? <div className="form-inline">
+												<div className="form-group">
+														<label htmlFor="date"
+														       className="mx-2">{note.type === TYPE_ONCE ? 'Du on :' : 'Repeat every :'} </label>
+														<input type="text" className="form-control" id="date"
+														       placeholder={note.type === TYPE_ONCE ? currentDate() : currentDay()}/>
+												</div>
+												<div className="form-group mx-sm-3">
+														<label htmlFor="hour" className="mx-2">at</label>
+														<input type="password" className="form-control" id="hour" placeholder={currentTime()}/>
+												</div>
+										</div> : null}
 										{note.showSettings ? <div className="back" onClick={(e) => this.editNote(e, note)}>
 												<FontAwesomeIcon icon={faArrowAltCircleLeft}/>
 										</div> : <div className="edit" onClick={(e) => this.editNote(e, note)}>
