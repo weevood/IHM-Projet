@@ -449,13 +449,13 @@ export default class extends Component
 																		       onChange={event => this.onInputChange('date', event.target.value, note)}/> :
 																		<select className="form-control select-day" id="date"
 																		        onChange={event => this.onInputChange('day', event.target.value, note)}>
-																				<option value="1" selected={note.day === 1}>Monday</option>
-																				<option value="2" selected={note.day === 2}>Tuesday</option>
-																				<option value="3" selected={note.day === 3}>Wednesday</option>
-																				<option value="4" selected={note.day === 4}>Thursday</option>
-																				<option value="5" selected={note.day === 5}>Friday</option>
-																				<option value="6" selected={note.day === 6}>Saturday</option>
-																				<option value="7" selected={note.day === 7}>Sunday</option>
+																				<option value="1" selected={note.day === "1"}>Monday</option>
+																				<option value="2" selected={note.day === "2"}>Tuesday</option>
+																				<option value="3" selected={note.day === "3"}>Wednesday</option>
+																				<option value="4" selected={note.day === "4"}>Thursday</option>
+																				<option value="5" selected={note.day === "5"}>Friday</option>
+																				<option value="6" selected={note.day === "6"}>Saturday</option>
+																				<option value="7" selected={note.day === "7"}>Sunday</option>
 																		</select>}
 																<label htmlFor="hour" className="mx-2">at</label>
 																<input type="time" className="form-control set-hour" id="hour"
