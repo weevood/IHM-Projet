@@ -31,13 +31,17 @@ export const currentDate = () =>
 		let date = newDate.getDate();
 		let month = newDate.getMonth() + 1;
 		let year = newDate.getFullYear();
-		return `${date < 10 ? `0${date}` : `${date}`}.${month < 10 ? `0${month}` : `${month}`}.${year}`;
+		return `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}`;
 }
 
-export const currentDay = () =>
+export const currentDay = (asString) =>
 {
-		let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-		return days[new Date().getDay()];
+		if (!asString)
+		{
+				return (new Date().getDay() + 1);
+		}
+		let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+		return days[new Date().getDay() + 1];
 }
 
 export const currentTime = () =>
@@ -45,5 +49,5 @@ export const currentTime = () =>
 		let newDate = new Date()
 		let hours = newDate.getHours();
 		let minutes = newDate.getMinutes();
-		return `${hours}:${minutes}`;
+		return `${hours < 10 ? `0${hours}` : `${hours}`}:${minutes < 10 ? `0${minutes}` : `${minutes}`}`;
 }

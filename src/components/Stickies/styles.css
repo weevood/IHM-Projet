@@ -206,6 +206,30 @@ h2.repeat {
 .react-stickies-wrapper .note-wrap .title:hover {
   color: #2c3e50;
 }
+.react-stickies-wrapper .note-wrap.remains .link {
+  color: #962d22;
+}
+.react-stickies-wrapper .note-wrap.remains .set-date,
+.react-stickies-wrapper .note-wrap.remains .set-hour,
+.react-stickies-wrapper .note-wrap.remains .select-day {
+  background-color: #db695d;
+}
+.react-stickies-wrapper .note-wrap.repeat .link {
+  color: #20638f;
+}
+.react-stickies-wrapper .note-wrap.repeat .set-date,
+.react-stickies-wrapper .note-wrap.repeat .set-hour,
+.react-stickies-wrapper .note-wrap.repeat .select-day {
+  background-color: #55a5d9;
+}
+.react-stickies-wrapper .note-wrap.once .link {
+  color: #c29d0b;
+}
+.react-stickies-wrapper .note-wrap.once .set-date,
+.react-stickies-wrapper .note-wrap.once .set-hour,
+.react-stickies-wrapper .note-wrap.once .select-day {
+  background-color: #f5d657;
+}
 .react-stickies-wrapper .note-wrap.today .back,
 .react-stickies-wrapper .note-wrap.today .edit {
   font-size: 2em;
@@ -233,15 +257,6 @@ h2.repeat {
   float: right;
   margin-right: 8px;
 }
-.react-stickies-wrapper .note-wrap .note-header .link.remains {
-  color: #962d22;
-}
-.react-stickies-wrapper .note-wrap .note-header .link.repeat {
-  color: #409ad5;
-}
-.react-stickies-wrapper .note-wrap .note-header .link.once {
-  color: #c29d0b;
-}
 .react-stickies-wrapper .note-wrap .note-body {
   padding: 5px;
   font-size: 0.7em;
@@ -258,6 +273,41 @@ h2.repeat {
   text-decoration: none;
   width: 100%;
   font-size: 10px;
+}
+.react-stickies-wrapper .note-wrap .note-footer .form-inline {
+  flex-flow: column;
+}
+.react-stickies-wrapper .note-wrap .note-footer .set-date,
+.react-stickies-wrapper .note-wrap .note-footer .set-hour,
+.react-stickies-wrapper .note-wrap .note-footer .select-day {
+  border: 0;
+  padding: 0px 5px;
+  color: #ffffff;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.react-stickies-wrapper .note-wrap .note-footer .set-date::placeholder,
+.react-stickies-wrapper .note-wrap .note-footer .set-hour::placeholder,
+.react-stickies-wrapper .note-wrap .note-footer .select-day::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+.react-stickies-wrapper .note-wrap .note-footer .set-date {
+  max-width: 85px;
+}
+.react-stickies-wrapper .note-wrap .note-footer .set-date::-webkit-calendar-picker-indicator {
+  background: none;
+  display: none;
+}
+.react-stickies-wrapper .note-wrap .note-footer .set-hour {
+  max-width: 50px;
+}
+.react-stickies-wrapper .note-wrap .note-footer .set-hour::-webkit-calendar-picker-indicator {
+  background: none;
+  display: none;
+}
+.react-stickies-wrapper .note-wrap .note-footer .select-day {
+  padding: 0px 5px 0px 2px;
 }
 .react-stickies-wrapper .note-wrap .note-footer .back,
 .react-stickies-wrapper .note-wrap .note-footer .edit {

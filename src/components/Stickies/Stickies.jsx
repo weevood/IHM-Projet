@@ -10,6 +10,11 @@ import './styles.css';
 import {currentDate, currentDay, currentTime} from "../../utils/utils";
 
 const COLORS = [COLOR_ONCE, COLOR_REMAINS, COLOR_REPEAT];
+
+const NOW_DAY = currentDay();
+const NOW_DATE = currentDate();
+const NOW_TIME = currentTime();
+console.log(NOW_DATE);
 const WidthProvider = require('react-grid-layout').WidthProvider;
 let ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
@@ -297,13 +302,45 @@ export default class extends Component
 				});
 		}
 
-		renderNote(note, idx)
+		onInputChange(input, value, currentNote)
+		{
+				const notes = this.state.notes;
+				notes.forEach((note) =>
+				{
+						if (currentNote.id === note.id)
+						{
+								switch (input)
+								{
+										case 'day':
+												currentNote.day = value;
+												break;
+										case 'date':
+												currentNote.date = value;
+												break;
+										case 'time':
+												currentNote.time = value;
+												break;
+										default:
+												break;
+								}
+						}
+				});
+				this.setState({
+						notes
+				});
+		}
+
+		renderNote(note)
 		{
 
 				note.grid.w = this.props.today ? 2 : 1;
 				note.grid.h = this.props.today ? 2 : 1;
 				note.contentEditable = note.contentEditable || false;
 				note.showSettings = note.showSettings || false;
+
+				note.day = note.day !== undefined  ? note.day : NOW_DAY;
+				note.date = note.date || NOW_DATE;
+				note.time = note.time || NOW_TIME;
 
 				if (note.type === TYPE_REMAINS)
 				{
@@ -338,7 +375,7 @@ export default class extends Component
 
 				return (<div key={note.grid.add ? '+' : note.grid.i} data-grid={note.grid}>
 						<aside
-								className={`note-wrap ${this.props.today ? 'today' : ''} ${note.contentEditable === true ? 'currentNote' : ''}`}
+								className={`note-wrap ${note.type} ${this.props.today ? 'today' : ''} ${note.contentEditable === true ? 'currentNote' : ''}`}
 								style={noteStyle}
 								onClick={(e) => this.showNote(e, note)}
 						>
@@ -351,7 +388,7 @@ export default class extends Component
 														html={note.title}
 														onChange={html => this.handleTitleChange(html, note)}/>}
 										</div>
-										{note.isExtLink ? <span className={`link ${note.type}`}>
+										{note.isExtLink ? <span className="link">
 						<FontAwesomeIcon icon={faExternalLinkSquareAlt}/>
 					</span> : null}
 								</div>
@@ -401,18 +438,30 @@ export default class extends Component
 								</div>
 								<div className="note-footer"
 								     style={noteFooterStyle}>
-										{note.type !== TYPE_REMAINS ? <div className="form-inline">
-												<div className="form-group">
-														<label htmlFor="date"
-														       className="mx-2">{note.type === TYPE_ONCE ? 'Du on :' : 'Repeat every :'} </label>
-														<input type="text" className="form-control" id="date"
-														       placeholder={note.type === TYPE_ONCE ? currentDate() : currentDay()}/>
-												</div>
-												<div className="form-group mx-sm-3">
-														<label htmlFor="hour" className="mx-2">at</label>
-														<input type="password" className="form-control" id="hour" placeholder={currentTime()}/>
-												</div>
-										</div> : null}
+										{note.type !== TYPE_REMAINS && note.contentEditable && !note.showSettings ?
+												<div className="form-inline">
+														<div className="form-group">
+																<label htmlFor="date"
+																       className="mx-2">{note.type === TYPE_ONCE ? 'Du on :' : 'Repeat every :'} </label>
+																{note.type === TYPE_ONCE ?
+																		<input type="date" className="form-control set-date" id="date"
+																		       value={note.date}
+																		       onChange={event => this.onInputChange('date', event.target.value, note)}/> :
+																		<select className="form-control select-day" id="date"
+																		        onChange={event => this.onInputChange('day', event.target.value, note)}>
+																				<option value="1" selected={note.day === 1}>Monday</option>
+																				<option value="2" selected={note.day === 2}>Tuesday</option>
+																				<option value="3" selected={note.day === 3}>Wednesday</option>
+																				<option value="4" selected={note.day === 4}>Thursday</option>
+																				<option value="5" selected={note.day === 5}>Friday</option>
+																				<option value="6" selected={note.day === 6}>Saturday</option>
+																				<option value="7" selected={note.day === 7}>Sunday</option>
+																		</select>}
+																<label htmlFor="hour" className="mx-2">at</label>
+																<input type="time" className="form-control set-hour" id="hour"
+																       value={note.time} onChange={event => this.onInputChange('time', event.target.value, note)}/>
+														</div>
+												</div> : null}
 										{note.showSettings ? <div className="back" onClick={(e) => this.editNote(e, note)}>
 												<FontAwesomeIcon icon={faArrowAltCircleLeft}/>
 										</div> : <div className="edit" onClick={(e) => this.editNote(e, note)}>
@@ -442,7 +491,7 @@ export default class extends Component
 								onBreakpointChange={this.onBreakpointChange}
 								{...grid}
 						>
-								{this.state.notes.map((note, idx) => this.renderNote(note, idx))}
+								{this.state.notes.map(this.renderNote)}
 						</ResponsiveReactGridLayout>
 				</div>);
 		}
