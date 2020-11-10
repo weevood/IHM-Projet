@@ -15,7 +15,7 @@ const data = [
     "id": "2020-11-02-042",
     "type": 'once',
     "title": "Liste de course 📝",
-    "text": "- Lait\n - Fromage\n - Beure\n - Soupe\n",
+    "text": "- Lait - Fromage - Beurre - Soupe",
     "grid": {
       "i": "2020-11-02-042",
       "x": 2,

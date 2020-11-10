@@ -14,7 +14,7 @@ const data = [
     "id": "2020-11-02-032",
     "type": 'once',
     "title": "Liste de course 📝",
-    "text": "- Lait\n - Fromage\n - Beure\n - Soupe\n",
+    "text": "- Lait - Fromage - Beurre - Soupe",
     "grid": {
       "i": "2020-11-02-032",
       "x": 1,
@@ -25,7 +25,7 @@ const data = [
     "id": "2020-11-02-036",
     "type": 'once',
     "title": "Machine a café",
-    "text": "Reparer la machine a cafe.",
+    "text": "Réparer la machine a café.",
     "grid": {
       "i": "2020-11-02-036",
       "x": 0,

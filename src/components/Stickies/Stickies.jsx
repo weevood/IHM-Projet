@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import {ContentState, convertFromHTML, Editor, EditorState} from 'draft-js';
-import moment from 'moment';
 import ContentEditable from './ContentEditable';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import htmlToDraft from 'html-to-draftjs';
 import {faArrowAltCircleLeft, faCog, faExclamation, faExternalLinkSquareAlt} from '@fortawesome/free-solid-svg-icons'
 import {COLOR_ONCE, COLOR_REMAINS, COLOR_REPEAT, TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "../../utils/constants";
 import './styles.css';
@@ -14,59 +11,61 @@ const COLORS = [COLOR_ONCE, COLOR_REMAINS, COLOR_REPEAT];
 const NOW_DAY = currentDay();
 const NOW_DATE = currentDate();
 const NOW_TIME = currentTime();
-console.log(NOW_DATE);
+
 const WidthProvider = require('react-grid-layout').WidthProvider;
 let ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
 ResponsiveReactGridLayout = WidthProvider(ResponsiveReactGridLayout);
 
 /**
- * @method: tranformEditorState
+ * @method: tranformText
  * @desc: Tranforms the text to editor state
  **/
-function tranformEditorState(notes)
+function tranformNotesText(notes)
 {
 		const notesData = notes.default || notes;
 		const data = notesData.map((note) =>
 		{
-				const text = note.default ? note.default.text : note.text || '';
-				if (text.includes('-'))
-				{
-						let textConverted = '';
-						text.split('-').forEach((item, idx) =>
-						{
-								textConverted += '<div class="custom-control custom-checkbox mr-sm-2">';
-								textConverted += '<input type="checkbox" class="custom-control-input" id="list-item-' + idx + '" checked="" />';
-								textConverted += '<label class="custom-control-label" for="list-item-' + idx + '">' + item + '</label>' + '</div>';
-						});
-						const blocksFromHTML = htmlToDraft(textConverted);
-						console.log(blocksFromHTML);
-						const state = ContentState.createFromBlockArray(blocksFromHTML.contentBlocks, blocksFromHTML.entityMap);
-						note.editorState = note.editorState || EditorState.createWithContent(state);
-				}
-				else
-				{
-						note.editorState = note.editorState || EditorState.createWithContent(ContentState.createFromText(text));
-				}
-				note.isExtLink = (note.text && note.text.includes('http') === true);
-				return note;
+				return tranformText(note);
 		});
 		return data;
 }
 
 /**
- * @method: transformContentState
- * @desc: Tranforms editor state to text content
+ * @method: tranformText
+ * @desc: Tranforms the text to editor state
  **/
-function transformContentState(notes)
+function tranformText(note)
 {
-		const clonedNotes = Object.assign([], notes);
-		const data = clonedNotes.map((note) =>
+		const text = note.text || 'Add your notes...';
+		if (text.includes('http'))
 		{
-				note.text = note.editorState.getCurrentContent().getPlainText();
-				return note;
-		});
-		return data;
+				note.isExtLink = true;
+				note.isList = false;
+		}
+		else if (text.includes('- '))
+		{
+				let textConverted = '';
+				console.log(text.split('-'));
+				text.split('-').forEach((item, idx) =>
+				{
+						if (idx)
+						{
+								textConverted += '<div class="custom-control custom-checkbox mr-sm-2">';
+								textConverted += '<input type="checkbox" class="custom-control-input" id="list-item-' + idx + '" checked="' + (Math.random() <= 0.5) + '"  />';
+								textConverted += '<label class="custom-control-label" for="list-item-' + idx + '">' + item + '</label>' + '</div>';
+						}
+				});
+				note.isExtLink = false;
+				note.isList = true;
+				note.text = textConverted;
+		}
+		else if (!text.includes('<input'))
+		{
+				note.isExtLink = false;
+				note.isList = false;
+		}
+		return note;
 }
 
 export default class extends Component
@@ -79,7 +78,7 @@ export default class extends Component
 
 				this.state = {
 						newCounter: 0,
-						notes: props.notes ? tranformEditorState(props.notes) : [],
+						notes: props.notes ? tranformNotesText(props.notes) : [],
 						colors: props.colors || COLORS,
 						dateFormat: props.dateFormat || 'lll',
 						today: props.today === true
@@ -100,7 +99,7 @@ export default class extends Component
 				if (nextProps.notes && nextProps.notes.length)
 				{
 						this.setState({
-								notes: tranformEditorState(nextProps.notes)
+								notes: tranformNotesText(nextProps.notes)
 						});
 				}
 				this.setState({
@@ -129,30 +128,31 @@ export default class extends Component
 				});
 		}
 
-		onChange(editorState, currentNote)
+		onChange(html, currentNote)
 		{
 				const notes = this.state.notes;
-				const dateFormat = this.state.dateFormat;
 				notes.forEach((note) =>
 				{
 						if (currentNote.id === note.id)
 						{
-								note.editorState = editorState;
-								note.timeStamp = moment().format(dateFormat);
+								currentNote.text = html.target.value;
+								return tranformText(currentNote);
 						}
 				});
-				if (typeof this.props.onChange === 'function')
-				{
-						this.props.onChange(transformContentState(this.state.notes), 'update');
-				}
+				this.setState({
+						notes
+				});
 		}
 
 		showNote(e, currentNote)
 		{
 				e.stopPropagation();
-				if (currentNote.isExtLink && !this.props.curtain)
+				if ((currentNote.isExtLink || currentNote.isList) && !this.props.curtain)
 				{ // Open note link
-						window.open(currentNote.text, '_blank');
+						if (currentNote.isExtLink)
+						{
+								window.open(currentNote.text, '_blank');
+						}
 						const notes = this.state.notes;
 						notes.forEach((note) =>
 						{
@@ -188,7 +188,7 @@ export default class extends Component
 		editNote(e, currentNote)
 		{
 				e.stopPropagation();
-				if (currentNote.isExtLink)
+				if (currentNote.isExtLink || currentNote.isList)
 				{ // Show curtain and note
 						currentNote.contentEditable = false;
 						this.props.showNote(e, currentNote);
@@ -338,7 +338,7 @@ export default class extends Component
 				note.contentEditable = note.contentEditable || false;
 				note.showSettings = note.showSettings || false;
 
-				note.day = note.day !== undefined  ? note.day : NOW_DAY;
+				note.day = note.day !== undefined ? note.day : NOW_DAY;
 				note.date = note.date || NOW_DATE;
 				note.time = note.time || NOW_TIME;
 
@@ -430,15 +430,14 @@ export default class extends Component
 														        onClick={() => this.deleteNote(note)}>Supprimer
 														</button>
 												</div>
-										</div> : <Editor
-												editorState={note.editorState}
-												onChange={editorState => this.onChange(editorState, note)}
-												placeholder="Add your notes..."
-										/>}
+										</div> : <ContentEditable
+												className={`contentEditable ${note.isList ? 'text-left' : ''} `}
+												html={note.text}
+												onChange={html => this.onChange(html, note)}/>}
 								</div>
 								<div className="note-footer"
 								     style={noteFooterStyle}>
-										{note.type !== TYPE_REMAINS && note.contentEditable && !note.showSettings ?
+										{note.type !== TYPE_REMAINS && note.text && !note.showSettings && !note.isList && !note.isExtLink ?
 												<div className="form-inline">
 														<div className="form-group">
 																<label htmlFor="date"
@@ -459,7 +458,8 @@ export default class extends Component
 																		</select>}
 																<label htmlFor="hour" className="mx-2">at</label>
 																<input type="time" className="form-control set-hour" id="hour"
-																       value={note.time} onChange={event => this.onInputChange('time', event.target.value, note)}/>
+																       value={note.time}
+																       onChange={event => this.onInputChange('time', event.target.value, note)}/>
 														</div>
 												</div> : null}
 										{note.showSettings ? <div className="back" onClick={(e) => this.editNote(e, note)}>

@@ -71,6 +71,9 @@ h2.repeat {
 .curtain .react-stickies-wrapper .note-wrap .note-body {
   padding: 15px;
 }
+.curtain .react-stickies-wrapper .note-wrap .note-body .contentEditable {
+  min-height: 150px;
+}
 .curtain .react-stickies-wrapper .note-wrap .note-footer .edit, .curtain .react-stickies-wrapper .note-wrap .note-footer .back {
   font-size: 2em;
 }
@@ -240,6 +243,7 @@ h2.repeat {
 .react-stickies-wrapper .note-wrap.today .note-body {
   padding: 10px;
   font-size: 1em;
+  max-height: 84%;
 }
 .react-stickies-wrapper .note-wrap .note-header {
   position: relative;
@@ -261,6 +265,8 @@ h2.repeat {
   padding: 5px;
   font-size: 0.7em;
   line-height: 1.2;
+  overflow: scroll;
+  max-height: 60%;
 }
 .react-stickies-wrapper .note-wrap .note-body.settings {
   height: 79%;

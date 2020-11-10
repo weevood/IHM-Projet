@@ -187,7 +187,7 @@ export default class extends Component
 								w: 1, h: 1
 						},
 						id: uid,
-						editorState: EditorState.createEmpty(),
+						text: 'Add your notes...',
 						title: 'Title',
 						type: type,
 						contentEditable: true,

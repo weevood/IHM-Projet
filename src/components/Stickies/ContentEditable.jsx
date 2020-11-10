@@ -32,6 +32,7 @@ export default class extends Component
 	render()
 	{
 		return (<div
+				className={this.props.className}
 				onInput={this.emitChange.bind(this)}
 				onBlur={this.emitChange.bind(this)}
 				contentEditable
