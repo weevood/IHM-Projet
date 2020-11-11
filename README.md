@@ -2,7 +2,7 @@
 
 ###### Thierry Otto & Thibaud Alt
 
-## Interface
+## 1. Analyse
 
 Pour que l'interface soit la plus simple possible, nous l'avons imaginé sur une page unique et divisée en 4 zones d’affichages simples :
 
@@ -72,24 +72,7 @@ Nous avons choisi d'utiliser les frameworks [React.js](https://fr.reactjs.org/) 
 La persistance des données sera fait dans une base de données type [MySQL](https://www.mysql.com/fr/) ou [SQLLite](https://www.sqlite.org/index.html).
 Une fois terminée, notre application ser déployé sur un serveur web de type [Netlify](https://www.netlify.com/) puis sera accessible via tout navigateur moderne.
 
-## Développement
-
-### Adaptations
-
-Lors du développement de l'application, nous avons quelques peu modifié notre interface notamment les points suivants
-
-- Sur la page principale, nous avons pu afficher 6 post-its par catégorie au lieu des 4 prévus initialement.
-
-- Nous avons décidé de remplacer les "dossiers de posts-its" par un simple défilement verticale qui nous semble plus cohérent.
-
-Après de multiples heures de développement, nous avons pu réaliser l'interface suivante. Celle-ci est actuellemnt adapté pour un iPad en mode paysage.
-
-![5.Interface.png](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/Mockups/5.Interface.png)
-
-### Améliorations possibles
-
-- Création d'un algorithme de choix des post-its "today" 
-- Placement des post-its lors de modifications de type
+## 2. Développement
 
 ### Environement (React.js)
 
@@ -118,19 +101,52 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
 ### Inspirations
+
+Pour réaliser la partie technique de ce projet, nous nous sommes inspirés des projets existants suivants.
 
 - [https://github.com/ajainvivek/react-stickies](https://github.com/ajainvivek/react-stickies)
 - [https://github.com/cosmicjs/sticky-notes](https://github.com/cosmicjs/sticky-notes)
 - [https://github.com/gemmi-arts/react-sticky-notes](https://github.com/gemmi-arts/react-sticky-notes)
 - [https://github.com/jeffsdev/React-StickyNotes](https://github.com/jeffsdev/React-StickyNotes)
+
+## 3. Résultat
+
+Après de multiples heures de développement, nous avons pu réaliser l'interface suivante. Celle-ci est actuellement adapté pour un iPad en mode paysage.
+
+### Adaptations
+
+Lors du développement de l'application, nous avons quelques peu modifié notre interface notamment les points suivants
+
+- Sur la page principale, nous avons pu afficher 6 post-its par catégorie au lieu des 4 prévus initialement.
+
+- Nous avons décidé de remplacer les "dossiers de posts-its" par un simple défilement verticale qui nous semble plus cohérent.
+
+#### Home
+
+![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/2.Interface/1.Home.png)
+
+#### Modification
+
+![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/2.Interface/2.Edit.png)
+
+#### Paramètres
+
+![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/2.Interface/3.Settings.png)
+
+#### Rotation
+
+Nous avons implémenté un système détectant l'orientation du dispositif, celui-ci force l'utilisateur à utiliser notre application en mode paysage. Si l'utilisateur tourne son iPad en mode portrait, l'écran suivant est affiché.
+
+![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/2.Interface/4.Rotate.png)
+
+### Améliorations possibles
+
+- Création d'un algorithme de choix des post-its "today" 
+- Placement des post-its lors de modifications de type
+- Prise en charge de différentes tailles d'écran 
+- Résolutions de bugs
+
+## Démo
+
+Nous avons publié une version démo de l'application sur Netlify, celle ci est disponnible à l'adresse suivante : https://app.netlify.com/start. 

@@ -4,7 +4,7 @@ const data = [
     "type": 'repeat',
     "important": 1,
     "title": "Médicaments",
-    "text": "Prendre 1 Dolipran a 11h30.",
+    "text": "Prendre 2 Doliprans a 17h45.",
     "grid": {
       "i": "2020-11-02-021",
       "x": 0,
@@ -26,7 +26,7 @@ const data = [
     "id": "2020-11-02-023",
     "type": 'repeat',
     "title": "Médicaments 💊",
-    "text": "Prendre 2 Doliprans a 17h30.",
+    "text": "Prendre 1 Dolipran a 11h30.",
     "grid": {
       "i": "2020-11-02-023",
       "x": 0,

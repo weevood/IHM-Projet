@@ -4,7 +4,7 @@ const data = [
     "type": 'repeat',
     "important": 1,
     "title": "Médicaments",
-    "text": "Prendre 1 Dolipran a 11h30.",
+    "text": "Prendre 2 Doliprans a 17h45.",
     "grid": {
       "i": "2020-11-02-041",
       "x": 0,
@@ -14,8 +14,9 @@ const data = [
   {
     "id": "2020-11-02-042",
     "type": 'once',
-    "title": "Liste de course 📝",
-    "text": "- Lait - Fromage - Beurre - Soupe",
+    "important": 1,
+    "title": "Médecin 👨‍⚕️",
+    "text": "Téléphonner au docteur Michou au 076/345.54.56.",
     "grid": {
       "i": "2020-11-02-042",
       "x": 2,
@@ -25,8 +26,8 @@ const data = [
   {
     "id": "2020-11-02-043",
     "type": 'once',
-    "title": "Boucherie 🍖",
-    "text": "Réserver la viande pour samedi.",
+    "title": "Liste de course 📝",
+    "text": "- Lait - Fromage - Beurre - Soupe",
     "grid": {
       "i": "2020-11-02-043",
       "x": 4,

@@ -2,6 +2,7 @@ const data = [
   {
     "id": "2020-11-02-031",
     "type": 'once',
+    "important": 1,
     "title": "Médecin 👨‍⚕️",
     "text": "Téléphonner au docteur Michou au 076/345.54.56.",
     "grid": {
