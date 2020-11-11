@@ -14,7 +14,7 @@ Pour que l'interface soit la plus simple possible, nous l'avons imaginé sur une
 
 4. **En bas à droite** : les post-it unique et répétitifs, pour ceux-ci 3 sont affichés directement, les suivants sont disponnible en appuyant sur le dossier.
 
-![](Mockups/1.Home.png)
+![](1.Mockups/1.Home.png)
 
 Les post-it important apparaissent avant les autres post-it.
 
@@ -27,7 +27,7 @@ Par soucis de simplicitée il y a uniquement deux actions possibles sur cette in
 
 Lors d'un clic sur le bouton d'ajout de post-it, on peut choisir entre les 3 types de post-it disponnibles.
 
-![](Mockups/2.Add.png)
+![](1.Mockups/2.Add.png)
 
 Un nouveau post-it vierge est alors créé, l'interface de celui-ci est identique à celle du point suivant.
 
@@ -39,11 +39,11 @@ Les types de post-it proposés sont les suivants :
 
 - Simple texte avec Emoji
 
-![](Mockups/3.View-once.png)
+![](1.Mockups/3.View-once.png)
 
 - Liste de tâches partielles
 
-![](Mockups/3.View-repeat.png)
+![](1.Mockups/3.View-repeat.png)
 
 Dans cette vue il est possible de cliquer sur la roue de réglage. A ce moment la le post-it tourne et les réglages de celui-ci s'affichent.
 
@@ -56,7 +56,7 @@ Les configurations possibles possible d’un post-it sont :
 
 Nous avons décidé de fixer les couleurs pour éviter des confusions et d’avoir un arc-en-ciel au niveau de l’interface.
 
-![](Mockups/4.Settings.png)
+![](1.Mockups/4.Settings.png)
 
 C'est également dans cette vue que l'on peut supprimer un post-it.
 
@@ -68,7 +68,12 @@ Au clic sur ce post-it, l'url spécifiée est directement ouvert dans le navigat
 
 ## Technologie
 
-Nous avons choisi d'utiliser les frameworks [React.js](https://fr.reactjs.org/) et [Bootstrap](https://getbootstrap.com/) afin de réaliser cette interface web. Celle-ci sera alors disponible tant sur un ordinateur que sur une tablette.
+Nous avons choisi d'utiliser les frameworks [React.js](
+
+
+
+
+://fr.reactjs.org/) et [Bootstrap](https://getbootstrap.com/) afin de réaliser cette interface web. Celle-ci sera alors disponible tant sur un ordinateur que sur une tablette.
 La persistance des données sera fait dans une base de données type [MySQL](https://www.mysql.com/fr/) ou [SQLLite](https://www.sqlite.org/index.html).
 Une fois terminée, notre application ser déployé sur un serveur web de type [Netlify](https://www.netlify.com/) puis sera accessible via tout navigateur moderne.
 
@@ -124,21 +129,21 @@ Lors du développement de l'application, nous avons quelques peu modifié notre 
 
 #### Home
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/2.Interface/1.Home.png)
+![](2.Interfaces/1.Home.png)
 
 #### Modification
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/2.Interface/2.Edit.png)
+![](2.Interfaces/2.Edit.png)
 
 #### Paramètres
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/2.Interface/3.Settings.png)
+![](2.Interfaces/3.Settings.png)
 
 #### Rotation
 
 Nous avons implémenté un système détectant l'orientation du dispositif, celui-ci force l'utilisateur à utiliser notre application en mode paysage. Si l'utilisateur tourne son iPad en mode portrait, l'écran suivant est affiché.
 
-![](/Users/thibaud/Documents/HEIG/Cours/IHM/Labos/01-IHM-Projet/2.Interface/4.Rotate.png)
+![](2.Interfaces/4.Rotate.png)
 
 ### Améliorations possibles
 
@@ -149,4 +154,4 @@ Nous avons implémenté un système détectant l'orientation du dispositif, celu
 
 ## Démo
 
-Nous avons publié une version démo de l'application sur Netlify, celle ci est disponnible à l'adresse suivante : https://app.netlify.com/start. 
+Nous avons publié une version démo de l'application sur Netlify, celle ci est disponnible à l'adresse suivante : [netlify.app](https://netlify.app). 
