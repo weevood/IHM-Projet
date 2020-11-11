@@ -70,9 +70,6 @@ Au clic sur ce post-it, l'url spécifiée est directement ouvert dans le navigat
 
 Nous avons choisi d'utiliser les frameworks [React.js](
 
-
-
-
 ://fr.reactjs.org/) et [Bootstrap](https://getbootstrap.com/) afin de réaliser cette interface web. Celle-ci sera alors disponible tant sur un ordinateur que sur une tablette.
 La persistance des données sera fait dans une base de données type [MySQL](https://www.mysql.com/fr/) ou [SQLLite](https://www.sqlite.org/index.html).
 Une fois terminée, notre application ser déployé sur un serveur web de type [Netlify](https://www.netlify.com/) puis sera accessible via tout navigateur moderne.
@@ -139,11 +136,17 @@ Lors du développement de l'application, nous avons quelques peu modifié notre 
 
 ![](2.Interfaces/3.Settings.png)
 
+#### Post-it "liens"
+
+Nous avons créé des post-its spéciaux permettant de sauvegarder des liens. Dès qu'un post-it contient une adresse web, un clic sur celui-ci ouvre directement le site web associé. Pour en modifier le contenu, il alors possible de cliquer sur la roue de réglage en bas à droite, le comportement de modification est alors identique à tout autre post-it. 
+
+![Screen Recording 2020-11-11 at 14.29.55.gif](2.Interfaces/4.Link.gif)
+
 #### Rotation
 
 Nous avons implémenté un système détectant l'orientation du dispositif, celui-ci force l'utilisateur à utiliser notre application en mode paysage. Si l'utilisateur tourne son iPad en mode portrait, l'écran suivant est affiché.
 
-![](2.Interfaces/4.Rotate.png)
+![](2.Interfaces/5.Rotate.png)
 
 ### Améliorations possibles
 
