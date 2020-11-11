@@ -2,6 +2,8 @@
 
 ###### Thierry Otto & Thibaud Alt
 
+*Github repository : [github.com/weevood/IHM-Projet](https://github.com/weevood/IHM-Projet)*
+
 ## 1. Analyse
 
 Pour que l'interface soit la plus simple possible, nous l'avons imaginé sur une page unique et divisée en 4 zones d’affichages simples :
@@ -154,6 +156,8 @@ Nous avons créé des post-its spéciaux permettant de sauvegarder des liens. D�
 
 ![Screen Recording 2020-11-11 at 14.29.55.gif](2.Interfaces/5.Link.gif)
 
+*2.Interfaces/5.Link.gif*
+
 Pour en modifier le contenu, il alors possible de cliquer sur la roue de réglage en bas à droite, le comportement de modification est alors identique à tout autre post-it. La roue de réglage disparait automatiquement après 10 secondes.
 
 #### Rotation
@@ -168,6 +172,7 @@ Nous avons implémenté un système détectant l'orientation du dispositif, celu
 - Placement des post-its lors de modifications de type
 - Prise en charge de différentes tailles d'écran 
 - Résolutions de bugs
+- Persistance des données
 
 ## 4. Démo
 
