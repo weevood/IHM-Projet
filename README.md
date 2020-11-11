@@ -134,19 +134,27 @@ Lors du développement de l'application, nous avons quelques peu modifié notre 
 
 Nous sommes content de cette interface que nous avons réussis à rendre clair et intuitive. De plus la possibilité d'ajout d'emoji rend l'expérience plus sympatique.
 
+#### Ajout
+
+Au clic sur le group bouton vert d'ajout de post-it, la vue suivante est affichée. Celle-ci nous permet très facilement de choisir quel type de nouveau post-it on souhaite créer.
+
+![](2.Interfaces/6.Add.png)
+
 #### Modification
 
 Au clic sur un post-it, celui-ci s'ouvre en plein écran. Cela permet de le voir clairement et de le modifier au besoin.
 
-![](2.Interfaces/2.Edit.png)
+![](2.Interfaces/2.View.png)
 
 Un selecteur de jour et d'heure est disponnible pour les post-its de type "repeat". Un selecteur de date et d'heure est disponnible pour les post-its de type "once".
+
+![](2.Interfaces/3.Edit.png)
 
 #### Paramètres
 
 Lors d'un clic sur la roue de réglage en bas à droite, on accède au réglages du post-it. Ici encore nous avons voulu créer une interface simple et facile d'utilisation.
 
-![](2.Interfaces/3.Settings.png)
+![](2.Interfaces/4.Settings.png)
 
 Il es tpossible de changer le type de post-it, celui-ci changera alors de couleur et sera replacé sur la page principal. On peut marquer le post-it comme "important". Il est possible via le bouton rouge de supprimer ce post-it. 
 
@@ -154,7 +162,7 @@ Il es tpossible de changer le type de post-it, celui-ci changera alors de couleu
 
 Nous avons créé des post-its spéciaux permettant de sauvegarder des liens. Dès qu'un post-it contient une adresse web, un clic sur celui-ci ouvre directement le site web associé. 
 
-![Screen Recording 2020-11-11 at 14.29.55.gif](2.Interfaces/4.Link.gif)
+![Screen Recording 2020-11-11 at 14.29.55.gif](2.Interfaces/5.Link.gif)
 
 Pour en modifier le contenu, il alors possible de cliquer sur la roue de réglage en bas à droite, le comportement de modification est alors identique à tout autre post-it. La roue de réglage disparait automatiquement après 10 secondes.
 
@@ -162,7 +170,7 @@ Pour en modifier le contenu, il alors possible de cliquer sur la roue de réglag
 
 Nous avons implémenté un système détectant l'orientation du dispositif, celui-ci force l'utilisateur à utiliser notre application en mode paysage. Si l'utilisateur tourne son iPad en mode portrait, l'écran suivant est affiché.
 
-![](2.Interfaces/5.Rotate.png)
+![](2.Interfaces/7.Rotate.png)
 
 ### Améliorations possibles
 
