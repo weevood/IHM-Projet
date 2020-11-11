@@ -171,4 +171,4 @@ Nous avons implémenté un système détectant l'orientation du dispositif, celu
 
 ## Démo
 
-Nous avons publié une version démo de l'application sur Netlify, celle ci est disponnible à l'adresse suivante : [netlify.app](https://netlify.app). 
+Nous avons publié une version démo de l'application sur Netlify, celle ci est disponnible à l'adresse suivante : [romantic-sammet-61761f.netlify.app](https://romantic-sammet-61761f.netlify.app/). 
