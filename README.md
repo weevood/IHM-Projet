@@ -2,6 +2,8 @@
 
 ###### Thierry Otto & Thibaud Alt
 
+*Github repository : [github.com/weevood/IHM-Projet](https://github.com/weevood/IHM-Projet)*
+
 ## 1. Analyse
 
 Pour que l'interface soit la plus simple possible, nous l'avons imaginé sur une page unique et divisée en 4 zones d’affichages simples :
