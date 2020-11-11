@@ -114,9 +114,17 @@ Pour réaliser la partie technique de ce projet, nous nous sommes inspirés des 
 
 ## 3. Résultat
 
-Après de multiples heures de développement, nous avons pu réaliser l'interface suivante. Celle-ci est actuellement adapté pour un iPad en mode paysage.
+Après de multiples heures de développement, de placement et de stylisation, nous avons pu réaliser l'interface suivante. Celle-ci est actuellement adapté pour un iPad en mode paysage.
 
-### Adaptations
+Nous avons tout fait pour garder l'interface la plus claire et la plus simple d'utilisation possible.
+
+#### Home
+
+La première page de l'application se compose de tous les post-its triés automatiquement par catégories sur la partie basse de l'écran.  Sur la partie haute, l'on retrouve les post-its actuellement mis en avant un le bouton d'ajout de post-it.
+
+![](2.Interfaces/1.Home.png)
+
+Les post-its noté comme importants sont marqués d'un point d'exclamation à gauche de leur titre. Les post-its de type "liens" sont quant à eux identifiés par un discret icone de lien à droite de leur titre.
 
 Lors du développement de l'application, nous avons quelques peu modifié notre interface notamment les points suivants
 
@@ -124,17 +132,23 @@ Lors du développement de l'application, nous avons quelques peu modifié notre 
 
 - Nous avons décidé de remplacer les "dossiers de posts-its" par un simple défilement verticale qui nous semble plus cohérent.
 
-#### Home
-
-![](2.Interfaces/1.Home.png)
+Nous sommes content de cette interface que nous avons réussis à rendre clair et intuitive. De plus la possibilité d'ajout d'emoji rend l'expérience plus sympatique.
 
 #### Modification
 
+Au clic sur un post-it, celui-ci s'ouvre en plein écran. Cela permet de le voir clairement et de le modifier au besoin.
+
 ![](2.Interfaces/2.Edit.png)
+
+Un selecteur de jour et d'heure est disponnible pour les post-its de type "repeat". Un selecteur de date et d'heure est disponnible pour les post-its de type "once".
 
 #### Paramètres
 
+Lors d'un clic sur la roue de réglage en bas à droite, on accède au réglages du post-it. Ici encore nous avons voulu créer une interface simple et facile d'utilisation.
+
 ![](2.Interfaces/3.Settings.png)
+
+Il es tpossible de changer le type de post-it, celui-ci changera alors de couleur et sera replacé sur la page principal. On peut marquer le post-it comme "important". Il est possible via le bouton rouge de supprimer ce post-it. 
 
 #### Post-it "liens"
 
