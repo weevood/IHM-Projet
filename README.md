@@ -178,6 +178,7 @@ Nous avons implémenté un système détectant l'orientation du dispositif, celu
 - Placement des post-its lors de modifications de type
 - Prise en charge de différentes tailles d'écran 
 - Résolutions de bugs
+- Persistance des données
 
 ## 4. Démo
 
