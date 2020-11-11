@@ -169,6 +169,8 @@ Nous avons implémenté un système détectant l'orientation du dispositif, celu
 - Prise en charge de différentes tailles d'écran 
 - Résolutions de bugs
 
-## Démo
+## 4. Démo
 
 Nous avons publié une version démo de l'application sur Netlify, celle ci est disponnible à l'adresse suivante : [romantic-sammet-61761f.netlify.app](https://romantic-sammet-61761f.netlify.app/). 
+
+Attention, cette version est uniquement adapté au format tablette, elle a été testé avec un iPad de 1024 x 768px. Il se peut que sur d'autre tailles d'écrans, l'affichage ne soit pas optimal.
