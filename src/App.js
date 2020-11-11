@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Stickies from './components/Stickies';
 import {TYPE_ONCE, TYPE_REMAINS, TYPE_REPEAT} from "./utils/constants";
-import {EditorState} from "draft-js";
 import {guid} from "./utils/utils";
 import DeviceOrientation, {Orientation} from 'react-screen-orientation'
 
@@ -18,12 +17,7 @@ export default class extends Component
 		constructor(props)
 		{
 				const notes = remains.default.concat(repeat.default).concat(once.default);
-				/* const today = shuffle(repeat.default.concat(once.default)).slice(0, 3);
-				 const today = [repeat.default[0], once.default[3], once.default[4]];
-				 today.forEach((note, idx) =>
-				 {
-				 today[idx].state = 'today';
-				 }); */
+
 				super(props);
 
 				this.state = {
