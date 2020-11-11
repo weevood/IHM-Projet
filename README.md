@@ -164,6 +164,8 @@ Nous avons créé des post-its spéciaux permettant de sauvegarder des liens. D�
 
 ![Screen Recording 2020-11-11 at 14.29.55.gif](2.Interfaces/5.Link.gif)
 
+*2.Interfaces/5.Link.gif*
+
 Pour en modifier le contenu, il alors possible de cliquer sur la roue de réglage en bas à droite, le comportement de modification est alors identique à tout autre post-it. La roue de réglage disparait automatiquement après 10 secondes.
 
 #### Rotation
