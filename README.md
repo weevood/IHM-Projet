@@ -152,9 +152,11 @@ Il es tpossible de changer le type de post-it, celui-ci changera alors de couleu
 
 #### Post-it "liens"
 
-Nous avons créé des post-its spéciaux permettant de sauvegarder des liens. Dès qu'un post-it contient une adresse web, un clic sur celui-ci ouvre directement le site web associé. Pour en modifier le contenu, il alors possible de cliquer sur la roue de réglage en bas à droite, le comportement de modification est alors identique à tout autre post-it. 
+Nous avons créé des post-its spéciaux permettant de sauvegarder des liens. Dès qu'un post-it contient une adresse web, un clic sur celui-ci ouvre directement le site web associé. 
 
 ![Screen Recording 2020-11-11 at 14.29.55.gif](2.Interfaces/4.Link.gif)
+
+Pour en modifier le contenu, il alors possible de cliquer sur la roue de réglage en bas à droite, le comportement de modification est alors identique à tout autre post-it. La roue de réglage disparait automatiquement après 10 secondes.
 
 #### Rotation
 
